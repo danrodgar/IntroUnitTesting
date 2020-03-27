@@ -3,9 +3,8 @@
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
 \usepackage[utf8x]{inputenc}
-%\usepackage{times}
+\usepackage{times}
 \usepackage{sans}
-\usepackage{fixltx2e}
 \usepackage{graphicx}
 \usepackage{longtable}
 \usepackage{float}
@@ -103,10 +102,10 @@
 
 \title {Introduction to Unit Testing}
 
-\author[D Rodriguez]{
+\author[Daniel Rodriguez]{
   \textcolor{green!50!black}{Daniel Rodriguez}%\inst{1}
 }
-\institute[UAH]{Univ of Alcala}
+\institute[UAH]{University of Alcala}
 \date{}
 
 \setcounter{tocdepth}{1}
@@ -290,7 +289,7 @@ public class AssertionExample {
 
 When assertions are run enabled, i.e., with the VM options \texttt{-enableassertions} or \texttt{-ea} :
 \begin{lstlisting}[language=JAVA,basicstyle=\scriptsize]
-$java -ea assertionexample.AssertionExample
+$java -ea AssertionExample
 \end{lstlisting}
 
 \begin{center}
@@ -310,8 +309,9 @@ Otherwise, it will run normally as assertions are design to be run during the te
 Assertions are design to check the program correctness, i.e, as \emph{preconditions}, \emph{postconditions} or \emph{invariants}.
 
 \begin{itemize}
- \item Assertions should not be used check method arguments and should not replace program exception handling mechanism.
+ \item Assertions should not be used check method arguments and should not replace program exception handling mechanism.\newline (do)
  \item Assertions should not modify variable values or objects.
+ \item Assertion should never be enabled in production code.
 \end{itemize}
 
 
@@ -340,22 +340,47 @@ Assertions are design to check the program correctness, i.e, as \emph{preconditi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{JUnit 3}
-
-The current version of JUnit is JUnit 4, however JUnit 3 is still popular and many extension frameworks are still based on Junit 3. 
-
-Main classes: 
+\begin{frame}{JUnit 5}
 
 \begin{center}
- \includegraphics[width=300pt]{./figs/UMLJUnit3}
+  \includegraphics[width=150pt]{./figs/jUnit5Logo}
 \end{center}
+  
+The current version of JUnit is JUnit 5 (Jupiter).
+
+~
+
+However JUnit 4 is still in use and popular and many extension frameworks are still based on Junit 4. 
+
+%Main classes: 
+%
+%\begin{center}
+% \includegraphics[width=300pt]{./figs/UMLJUnit3}
+%\end{center}
 
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{JUnit 5 --- Architecture }
+
+  \begin{center}
+    \includegraphics[width=300pt]{./figs/jUnit5Architecture}
+  \end{center}
+    
+
+  
+  %Main classes: 
+  %
+  %\begin{center}
+  % \includegraphics[width=300pt]{./figs/UMLJUnit3}
+  %\end{center}
+  
+  \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{JUnit 3 -- How-to}
+\begin{frame}{JUnit 5 -- How-to}
 
 Having a Class Under Test (CUT), we need to create a another class (test class) as follows:
 
@@ -369,22 +394,17 @@ Having a Class Under Test (CUT), we need to create a another class (test class) 
  \item Optionally define \texttt{main()} to run the TestCase in batch mode (test runner)
 \end{itemize}
 
-Test methods rules (JUnit3):
-\begin{itemize}
- \item Test methods has name pattern \texttt{testXXX()}
- \item Test methods have NO arguments
- \item Test methods must return nothing - \texttt{void}
-\end{itemize}
 
 \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}[fragile]{Minimal example - JUnit 3}
+\begin{frame}[fragile]{Minimal example - JUnit 5}
 
 \begin{center}
 \begin{lstlisting}[language=Java,basicstyle=\scriptsize]
+
 import junit.framework.TestCase;
 public class MinimalTest extends TestCase {
 
@@ -710,141 +730,139 @@ public class AllTests {
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{JUnit in Eclipse with MoreUnit}
+\subsection{JUnit in Eclipse}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{MoreUnit}
-
-MoreUnit makes unit testing in Eclipse a bit easier.
-  
-To install MoreUnit in Eclipse, select Help \textgreater Eclipse Marketplace
-  
-  \begin{center}
-    \includegraphics[width=100pt]{./figs/market}
-  \end{center}
-  
-  \texttt{Next} and then \texttt{Finish} (restart Eclipse)
-
-    More about MoreUnit: \texttt{http://moreunit.sourceforge.net/}
-\end{frame}
+% \begin{frame}{MoreUnit}
+%
+%MoreUnit makes unit testing in Eclipse a bit easier.
+%  
+%To install MoreUnit in Eclipse, select Help \textgreater Eclipse Marketplace
+%  
+%  \begin{center}
+%    \includegraphics[width=100pt]{./figs/market}
+%  \end{center}
+%  
+%  \texttt{Next} and then \texttt{Finish} (restart Eclipse)
+%
+%    More about MoreUnit: \texttt{https://moreunit.github.io/MoreUnit-Eclipse/ }
+%\end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-
-Configure MoreUnit Source folder
-
-  Import the JUnit library and create a source folder for the tests in each project which you want to have unit tests. Click \texttt{Window} \textgreater \texttt{Preferences}:
-
-    \begin{center}
-    \includegraphics[width=205pt]{./figs/config}                                            
-    \end{center}
-      
-    Set \texttt{Test} as Source Folder.
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-    Starting with MoreUnit. With a new Java Project:
-    \begin{enumerate}
-      \item Open the project properties
-      \item Click on \emph{Java Build Path}
-      \item Select the \emph{Libraries} tab
-      \item Click the \emph{Add Library} button
-      \item Choose JUnit
-    \end{enumerate}
-\end{frame}
+%\begin{frame}
+%
+%Configure MoreUnit Source folder
+%
+%  Import the JUnit library and create a source folder for the tests in each project which you want to have unit tests. Click \texttt{Window} \textgreater \texttt{Preferences}:
+%
+%    \begin{center}
+%    \includegraphics[width=205pt]{./figs/config}                                            
+%    \end{center}
+%      
+%    Set \texttt{Test} as Source Folder.
+%
+%\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-     In your Java Project, create a new source folder called 'test', in your folder right click and select \texttt{New} \textgreater \texttt{Source Folder}.
+%\begin{frame}
+%    Starting with MoreUnit. With a new Java Project:
+%    \begin{enumerate}
+%      \item Open the project properties
+%      \item Click on \emph{Java Build Path}
+%      \item Select the \emph{Libraries} tab
+%      \item Click the \emph{Add Library} button
+%      \item Choose JUnit
+%    \end{enumerate}
+%\end{frame}
 
-    \begin{center}
-      \includegraphics[width=150pt]{./figs/folder}
-    \end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\end{frame}
-
-
+%\begin{frame}
+%     In your Java Project, create a new source folder called 'test', in your folder right click and select \texttt{New} \textgreater \texttt{Source Folder}.
+%
+%    \begin{center}
+%      \includegraphics[width=150pt]{./figs/folder}
+%    \end{center}
+%
+%\end{frame}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
+%\begin{frame}
 
-In the class with the code you have to do right click and select MoreUnit menu \textgreater Jump to test/Member under test.
+%In the class with the code you have to do right click and select MoreUnit menu \textgreater Jump to test/Member under test.
 
-\begin{center}
-  \includegraphics[width=150pt]{./figs/Unitmenu}
-\end{center}
-
-\end{frame}
+%\begin{center}
+%  \includegraphics[width=150pt]{./figs/Unitmenu}
+%\end{center}
+%
+%\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}[fragile]{Fixtures}
-
-Now you can view your test class in the test source folder. Extract from test class:
-
-\begin{center}
-\begin{lstlisting}[language=Java,basicstyle=\scriptsize]
-public class ComplexNumberTest {
-  @BeforeClass
-  public static void setUpBeforeClass() throws Exception {}
-
-  @AfterClass
-  public static void tearDownAfterClass() throws Exception {}
-
-  @Before
-  public void setUp() throws Exception {}
-
-  @After
-  public void tearDown() throws Exception {}
-}
-\end{lstlisting}
-\end{center}
-
-\end{frame}
+%\begin{frame}[fragile]{Fixtures}
+%
+%Now you can view your test class in the test source folder. Extract from test class:
+%
+%\begin{center}
+%\begin{lstlisting}[language=Java,basicstyle=\scriptsize]
+%public class ComplexNumberTest {
+%  @BeforeClass
+%  public static void setUpBeforeClass() throws Exception {}
+%
+%  @AfterClass
+%  public static void tearDownAfterClass() throws Exception {}
+%
+%  @Before
+%  public void setUp() throws Exception {}
+%
+%  @After
+%  public void tearDown() throws Exception {}
+%}
+%\end{lstlisting}
+%\end{center}
+%
+%\end{frame}
 
 % 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile]
 
+%\begin{frame}[fragile]
 
-We can add some attributes to test the methods:
-\begin{center}
-\begin{lstlisting}[language=Java,basicstyle=\tiny]
-public class ComplexNumberTest {
-	private ComplexNumber cOneZero;
-	private ComplexNumber cZeroOne;
-	private ComplexNumber cOneOne;
-
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-	@Before
-	public void setUp() throws Exception {
-	}
-	@After
-	public void tearDown() throws Exception {
-	}
-}
-\end{lstlisting}
-\end{center}
-\end{frame}
+%We can add some attributes to test the methods:
+%\begin{center}
+%\begin{lstlisting}[language=Java,basicstyle=\tiny]
+%public class ComplexNumberTest {
+%	private ComplexNumber cOneZero;
+%	private ComplexNumber cZeroOne;
+%	private ComplexNumber cOneOne;
+%
+%	@BeforeClass
+%	public static void setUpBeforeClass() throws Exception {
+%	}
+%	@AfterClass
+%	public static void tearDownAfterClass() throws Exception {
+%	}
+%	@Before
+%	public void setUp() throws Exception {
+%	}
+%	@After
+%	public void tearDown() throws Exception {
+%	}
+%}
+%\end{lstlisting}
+%\end{center}
+%\end{frame}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]
 
-Now we can write some test so we will start with the \texttt{@Before} marked \texttt{setUp()} method
+We can write some test that will start with the annontation \texttt{@Before} for the \texttt{setUp()} method as follows.
 
 \begin{lstlisting}[language=Java,basicstyle=\tiny]
 @Before
@@ -861,17 +879,19 @@ This method is executed before each test case is run. Typically used to create c
 
 \begin{frame}[fragile]
 
-We can destroy all classes previously created with the method marked as \texttt{@After tierDown()}
+We can destroy all classes previously created with the annotation  \texttt{@After} before a method usually named \texttt{tierDown()}.
 
 \begin{lstlisting}[language=Java,basicstyle=\tiny]
-@Before
-public void setUp() throws Exception {
-  cOneZero = new ComplexNumber(1, 0);
-  cZeroOne = new ComplexNumber(0, 1);
-  cOneOne = new ComplexNumber(1, 1);
+@After
+public void tierDown() throws Exception {
+  cOneZero = null;
+  cZeroOne = null;
+  cOneOne = null;
 }
-\end{lstlisting}	
-This method "destroys" the classes before each test was executed.
+\end{lstlisting}
+
+This method destroys the classes before each test is executed.
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -913,9 +933,9 @@ public void testEquals() {
 }
 \end{lstlisting}
 
-If you have some problems with \texttt{@test} label and asserts, import this package:
+% If you have some problems with \texttt{@test} label and asserts, import this package:
 
-\texttt{import static org.junit.Assert.*;}
+% \texttt{import static org.junit.Assert.*;}
 
 \end{frame}
 
@@ -928,13 +948,10 @@ To run the test:
 Right click on your CUT (Class Under Test), select MoreUnit and run tests.
 
 \begin{center}
- \includegraphics[width=100pt]{./figs/Results}
+\includegraphics[width=100pt]{./figs/Results}
 \end{center}
 
 \end{frame}
-
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -983,7 +1000,7 @@ This is tested with:
 In general private methods are not tested directly (they are tested indirectly through other public methods). However, if there is a need to do there are several alternatives:
 
 \begin{itemize}
- \item Change the visibility (make them public)
+ \item Change the visibility (make them public) temporarily. However, this changes the original program and does not follow the criteria of keeping tests and source code independently.
  \item Use Java reflection mechanisms
 \end{itemize}
 
@@ -1032,6 +1049,7 @@ The parametrized test is an automated test in which the parameters change automa
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]{Parametrized tests - Example}
+
 \begin{lstlisting}[language=Java,basicstyle=\tiny]
 import static org.junit.Assert.assertEquals;
 import java.util.Arrays;
@@ -1136,7 +1154,7 @@ Process to create mock objects
 
 ''Mockito is a mocking framework that tastes really good. It lets you write beautiful tests with clean \& simple API. Mockito doesn't give you hangover because the tests are very readable and they produce clean verification errors.''
 
-Web: \texttt{https://code.google.com/p/mockito/}
+Web: \texttt{https://site.mockito.org/}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1179,27 +1197,30 @@ With mock objects and Mockito we can do:
 
 Download Mockito:
 
-\texttt{\url{https://code.google.com/p/mockito/downloads/}}
+\texttt{\url{https://site.mockito.org/}}
 
 and include the \texttt{.jar} file into your project.
+
+~
+
+Or use Maven or Gradle to handle the dependencies.
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
+% \begin{frame}
 
-The process is similar as in JUnit:
-\begin{enumerate}
- \item Open the project properties
- \item Click on Java Build Path
- \item Select the Libraries tab
- \item Click the Add External \texttt{.jar} button
- \item Choose your mockito \texttt{.jar} library.
-\end{enumerate}
+% The process is similar as in JUnit:
+% \begin{enumerate}
+%  \item Open the project properties
+%  \item Click on Java Build Path
+%  \item Select the Libraries tab
+%  \item Click the Add External \texttt{.jar} button
+%  \item Choose your mockito \texttt{.jar} library.
+% \end{enumerate}
 
-\end{frame}
-
+% \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1226,7 +1247,7 @@ public class QuadraticEquation {
     /**
      * Helper method to check the coefficients are ok.
      */
-    protected boolean checkCoefficientsAreOk()throws Exception{
+    protected boolean checkCoefficientsAreOk() throws Exception{
         if (a == 0) throw new Exception();
         return true;
     }
@@ -1303,13 +1324,13 @@ public class QuadraticEquation {
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
+% \begin{frame}
 
-First step is to create JUnit4 test classes as usual.
+% First step is to create JUnit test classes as usual.
 
-Then create the test methods.
+% Then create the test methods.
 
-\end{frame}
+% \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1347,17 +1368,16 @@ public class QuadraticEquationTest
 \begin{frame}[fragile]
 \begin{lstlisting}[language=JAVA,basicstyle=\tiny]
 	@Test
-	public void checkCoefficientsAreOk() throws Exception
-	{
+	public void checkCoefficientsAreOk() throws Exception {
 		System.out.println("Coeficients");
 		boolean expResult = true;
 		boolean result = qe.checkCoefficientsAreOk();
 		assertEquals(expResult, result);
 	}
 
-	@Test(expected = Exception.class) //Testing exceptions the first coeficient must not be 0
-	public void checkCoefficientsAreOk1() throws Exception
-	{
+  //Testing exceptions the first coeficient must not be 0
+	@Test(expected = Exception.class) 
+	public void checkCoefficientsAreOk1() throws Exception {
 		System.out.println("Coeficients");
 		boolean expResult = true;
 		boolean result = qe1.checkCoefficientsAreOk();
@@ -1365,8 +1385,7 @@ public class QuadraticEquationTest
 	}
 	
 	@Test
-	public void getSolutions() throws Exception
-	{
+	public void getSolutions() throws Exception {
 		System.out.println("Solutions");
 		ComplexNumber[] expected = { new ComplexNumber(0.0, 0.0),
 				new ComplexNumber(-5.0, 0.0) };
@@ -1436,8 +1455,8 @@ class ComplexNumber {
      *         parts of theNum, and false otherwise.
      */
     public boolean equals(ComplexNumber theNum) {
-	return ((realPart == theNum.realPart) &&
-		(imagPart == theNum.imagPart));
+	    return ((realPart == theNum.realPart) &&
+		          (imagPart == theNum.imagPart));
     }
 \end{lstlisting}
 \end{frame}
@@ -1455,8 +1474,8 @@ class ComplexNumber {
      *         ComplexNumber and theNum.
      */
     public ComplexNumber add(ComplexNumber theNum) {
-	return new ComplexNumber(realPart + theNum.realPart,
-				 imagPart + theNum.imagPart);
+	    return new ComplexNumber(realPart + theNum.realPart,
+				                       imagPart + theNum.imagPart);
     }
 
     /**
@@ -1469,8 +1488,8 @@ class ComplexNumber {
      *         between this ComplexNumber and theNum.
      */
     public ComplexNumber subtract(ComplexNumber theNum) {
-	return new ComplexNumber(realPart - theNum.realPart,
-				 imagPart - theNum.imagPart);
+	    return new ComplexNumber(realPart - theNum.realPart,
+				                       imagPart - theNum.imagPart);
     }
 
 \end{lstlisting}
@@ -1506,14 +1525,14 @@ class ComplexNumber {
      */
     @Override
     public String toString() {
-	// If the imagPart is >= 0 print out a + b i
-	if (imagPart >= 0) {
-	    return realPart + " + " + imagPart + " i";
-	}
-	// If the imagPart is < 0 print out a - b i
-	else {
-	    return realPart + " - " + (-imagPart) + " i";
-	}
+	    // If the imagPart is >= 0 print out a + b i
+	    if (imagPart >= 0) {
+	      return realPart + " + " + imagPart + " i";
+    	}
+	    // If the imagPart is < 0 print out a - b i
+	    else {
+	      return realPart + " - " + (-imagPart) + " i";
+	    }
     }
 }
 \end{lstlisting}
@@ -1525,13 +1544,10 @@ class ComplexNumber {
 \begin{lstlisting}[language=JAVA,basicstyle=\tiny]
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
-
 import org.junit.Before;
 import org.junit.Test;
 
-
-public class ComplexNumberTest
-{
+public class ComplexNumberTest{
 	private ComplexNumber cZero ;
 	private ComplexNumber cOneZero ;
 	private ComplexNumber cZeroOne ;
@@ -1634,8 +1650,16 @@ public void getImaginaryPart2() throws Exception {
 
 \begin{frame}[fragile]{Summary}
 
-JUnit keeps evolving and the next version will take advantage of Lambda expressions, etc.
+jUnit is a must in software engineering. 
 
+It can be used in combination with other frameworks such as Mockito, EasyMock, etc.
+
+It should be part of the software development life cycle with:
+\begin{itemize}
+  \item Continuous integration
+  \item Configuration management
+  \item etc.
+\end{itemize}
 
 \end{frame}
 
