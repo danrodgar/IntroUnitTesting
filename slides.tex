@@ -334,7 +334,7 @@ Assertions are design to check the program correctness, i.e, as \emph{preconditi
      \item Simple framework with a small learning curve
      \item Tests can be automated (facilitates regression testing). It allow us to aggregate tests via test suites.
      \item \textit{De facto} standard, integrated with Ant and Maven. Typically run with continuous integration testing tools. 
-     \item \texttt{http://www.junit.org/}
+     \item \texttt{\url{http://www.junit.org/}}
   \end{itemize}
 \end{frame}
 
@@ -350,7 +350,7 @@ The current version of JUnit is JUnit 5 (Jupiter).
 
 ~
 
-However JUnit 4 is still in use and popular and many extension frameworks are still based on Junit 4. 
+However JUnit 4 is still in use and popular and many extension frameworks are still based on Junit 4. And even, JUnit3 has been used extensively and it is still legacy code of many projects.
 
 %Main classes: 
 %
@@ -360,29 +360,42 @@ However JUnit 4 is still in use and popular and many extension frameworks are st
 
 \end{frame}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{JUnit 5 --- Architecture }
+\begin{frame}{JUnit 5 -- Architecture }
 
   \begin{center}
     \includegraphics[width=300pt]{./figs/jUnit5Architecture}
   \end{center}
-    
+     
+  \end{frame}
 
   
-  %Main classes: 
-  %
-  %\begin{center}
-  % \includegraphics[width=300pt]{./figs/UMLJUnit3}
-  %\end{center}
-  
-  \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{JUnit 5 -- Architecture }
+
+JUnit 5 = JUnit Platform + JUnit Jupiter + JUnit Vintage
+
+\begin{itemize}
+  \item \alert{JUnit Platform} provides Launcher APIs which are used by IDEs and build tools. It also defines TestEngine APIs which are used to develop testing frameworks that run on the platform.
+  \item \alert{JUnit Jupiter} is the new model for writing tests and extensions. It also provides a TestEngine for running Jupiter based tests on the platform.
+  \item \alert{JUnit Vintage} provides a TestEngine for running JUnit 3 and JUnit 4 based tests.
+\end{itemize}
+
+   
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{JUnit 5 -- How-to}
+\begin{frame}{JUnit 3 - (Obsolete)}
 
-Having a Class Under Test (CUT), we need to create a another class (test class) as follows:
+There are still a lot of test cases and frameworks that use JUnit3 or 4. We briefly describe how to do test cases with JUnit3 and 4 to understand them (But we will only work with JUnit 5).
+
+It was based on inheritance and name conventions.
+
+With JUnit3 we needed to create test classes as follows:
 
 \begin{itemize}
  \item Add \texttt{JUnit3<version>.jar} to the \texttt{classpath}
@@ -391,21 +404,33 @@ Having a Class Under Test (CUT), we need to create a another class (test class) 
  \begin{itemize}
   \item Write assert methods inside the \texttt{testXXX()} methods to compare actual results (obtained from the CUT) with the expected results (the oracle)
  \end{itemize}
- \item Optionally define \texttt{main()} to run the TestCase in batch mode (test runner)
+ \item Optionally, define \texttt{main()} to run the TestCase in batch mode (test runner)
 \end{itemize}
 
 
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{JUnit 3 (Obsolete) - Architecture }
+
+Main classes: 
+
+\begin{center}
+  \includegraphics[width=300pt]{./figs/UMLJUnit3}
+\end{center}
+ 
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}[fragile]{Minimal example - JUnit 5}
+\begin{frame}[fragile]{JUnit3 (Obsolete) Minimal example}
 
 \begin{center}
-\begin{lstlisting}[language=Java,basicstyle=\scriptsize]
 
+\begin{lstlisting}[language=Java,basicstyle=\scriptsize]
 import junit.framework.TestCase;
+
 public class MinimalTest extends TestCase {
 
   public MinimalTest(String name) {
@@ -429,116 +454,64 @@ public class MinimalTest extends TestCase {
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Fixtures - \texttt{setUp()} and \texttt{tearDown()}}
+\begin{frame}[fragile]{JUnit 3 (Obsolete) - Characteristics}
 
-Fixtures are used to initialize and release common test data, this is done with \texttt{setUp()} and \texttt{tearDown()}.
+  Fixtures are used to initialize and release common test data, this is done with \texttt{setUp()} and \texttt{tearDown()}.
 
-
-\begin{itemize}
-  \item \texttt{setUp()} is used for setting things up before \textbf{each} test
-  \item \texttt{tearDown()} for tearing things down after \textbf{each} test
-\end{itemize}
-
-\end{frame}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]{Test Suites}
-
-Used to collect multiple test cases
-
-Suites can contain multiple test cases: 
-
-\begin{itemize}
- \item \texttt{addTest(Test test)}
-\end{itemize}
-
-or
-
-\begin{itemize}
- \item \texttt{addTestSuite(java.lang.Class testClass)}
-\end{itemize}
-
-
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]{Test Suites - Example}
+  \begin{itemize}
+    \item \texttt{setUp()} is used for setting things up before \textbf{each} test
+    \item \texttt{tearDown()} for tearing things down after \textbf{each} test
+  \end{itemize}
+  
+  Suites can contain multiple test cases: \texttt{addTest(Test test)}
 
 \begin{lstlisting}[language=JAVA,basicstyle=\scriptsize]
-public static void main (String [] args){
-  junit.textui.TestRunner.run (suite ());
-}
-public static Test suite (){
-  suite = new TestSuite ("AllTests");
-  suite.addTest(new TestSuite (AllTests.class));
-    suite.addTest (StringTest.suite());
-}
-public void testAllTests () throws Exception{
-    assertTrue (suite != null);
-}
-\end{lstlisting}
+  public static void main (String [] args){
+    junit.textui.TestRunner.run (suite ());
+  }
+  // TestSuite implements Test interface
+  public static Test suite() {
+    TestSuite suite = new TestSuite("AllTests");
+    suite.addTest(new TestSuite(FloatTest.class));
+    suite.addTest(new TestSuite(BoolTest.class));
+    return suite;
+  }
+  public void testAllTests () throws Exception{
+      assertTrue (suite != null);
+  }
+  \end{lstlisting}
 
 \end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]{Test Suites - Example}
-
-\begin{lstlisting}[language=JAVA,basicstyle=\scriptsize]
-// TestSuite implements Test interface
-public static Test suite() {
-  TestSuite suite = new TestSuite();
-  suite.addTest(new TestSuite(FloatTest.class));
-  suite.addTest(new TestSuite(BoolTest.class));
-  return suite;
-}
-\end{lstlisting}
-
-\end{frame}
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{JUnit 4}
 
-JUnit 4 take advantage of imports and annotations included in recent versions of JDK.
+JUnit 4 took advantage of imports and annotations included in JDK 5+.
 \begin{itemize}
- \item Static imports
- 
-    \begin{itemize}
-    \item It allow us to make use of static variables and methods from other classes without qualifying them (name the class).
-    \end{itemize}
+  \item Static imports. It allow us to make use of static variables and methods from other classes without qualifying them (name the class).
 
- \item Annotations 
+  \item Annotations 
     \begin{itemize}
     \item Annotations are metadata that provide information to the compiler (or other tools)
-    \item JUnit 4 works with annotations instead of extending classes.
-    \item There is no need for naming conventions as in previous versions but those naming patterns are still used. 
+    \item JUnit 4 works with annotations instead of extending classes. There is no need for naming conventions as in previous versions but those naming patterns are still used. 
     \end{itemize}
 
+  \item JUnit4 also improved the functionality with annotations>
+    \begin{itemize}
+    \item Timeouts: \texttt{@Test(timeout=1000)}...
+    \item Testing exceptions: \texttt{@Test(expected=DBConnectException.class)} ...
+    \item Ignore a test: \texttt{@Ignore("Ignore the following test for now")}
+    \end{itemize}
 \end{itemize}
-
-They also improve the functionality with:
-\begin{itemize}
- \item Timeouts: \texttt{@Test(timeout=1000)}...
- \item Testing exceptions: \texttt{@Test(expected=DBConnectException.class)} ...
- \item Ignore a test: \texttt{@Ignore("Ignore the following test for now")}
-  \end{itemize}
-
 
 \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{@annotations}
+\begin{frame}{Junit 4 Annotations}
 
 \begin{itemize}
   \item \texttt{@Before} A method marked with \texttt{@Before} will be run before every test method. It is used to prepare the tests environment.
@@ -551,44 +524,106 @@ They also improve the functionality with:
 \end{frame}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Junit 5 - Annotations}
+
+  \begin{itemize}
+    \item \texttt{@BeforeEach} A method marked with \texttt{@BeforeEach} will be run before every test method. It is used to prepare the tests environment.
+    \item \texttt{@AfterEach} It will be run after every test method.
+    \item \texttt{@Test} Identifies a test method.
+    \item \texttt{@Ignore} The method under test will be ignored (to disable some tests which we do not want to repeat)
+    \item \texttt{@AfterAll} Run only once after all test methods
+    \item \texttt{@BeforeAll} Run only once before all test methods
+    \end{itemize}
+  \end{frame}
+  
+
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Assert methods}
+\begin{frame}{Junit 5}
 
+  Assert methods are used as a comparison between an expected value and an actual value to determine the success or failure of a test
+    
+        \begin{itemize}
+          \item \texttt{assertCONDITION(...)}
+          \item \texttt{assertCONDITION(String message,...)}  the message is displayed when the assert method fails
+        \end{itemize}
+    
+  For example:
+        \begin{itemize}
+          \item \texttt{assertEquals(<> expected, <> actual)}
+          \item \texttt{assertSame(...)} 
+          \item \texttt{assertFalse(boolean condition)}
+          \item \texttt{assertTrue(boolean condition)}
+          \item \texttt{assertNull(...)}
+          \item \texttt{assertNotNull(...)}
+          \item Etc.
+        \end{itemize}
+  
+        Further info in the API: \texttt{org.junit.jupiter.api.Assertions}\\
+        \texttt{\url{https://junit.org/junit5/}}
+    
+    \end{frame}
+  
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Junit 5 Assert methods}
 
 Assert methods are used as a comparison between an expected value and an actual value to determine the success or failure of a test
+  
+      \begin{itemize}
+        \item \texttt{assertCONDITION(...)}
+        \item \texttt{assertCONDITION(String message,...)}  the message is displayed when the assert method fails
+      \end{itemize}
+  
+For example:
+      \begin{itemize}
+        \item \texttt{assertEquals(<> expected, <> actual)}
+        \item \texttt{assertSame(...)} 
+        \item \texttt{assertFalse(boolean condition)}
+        \item \texttt{assertTrue(boolean condition)}
+        \item \texttt{assertNull(...)}
+        \item \texttt{assertNotNull(...)}
+        \item Etc.
+      \end{itemize}
 
-    \begin{itemize}
-      \item \texttt{assertCONDITION(...)}
-      \item \texttt{assertCONDITION(String message,...)}  the message is displayed when the assert method fails
-    \end{itemize}
+      Further info in the API: \texttt{org.junit.jupiter.api.Assertions}\\
+      \texttt{\url{https://junit.org/junit5/}}
+  
+  \end{frame}
 
-Used to check the results of the tests. For example:
-    \begin{itemize}
-      \item \texttt{assertEquals(<> expected, <> actual)}
-      \item \texttt{assertSame(...)} 
-      \item \texttt{assertFalse(boolean condition)}
-      \item \texttt{assertTrue(boolean condition)}
-      \item \texttt{assertNull(...)}
-      \item \texttt{assertNotNull(...)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    \end{itemize}
-    Further info:\\
-    \texttt{http://junit.sourceforge.net/javadoc/org/junit/Assert.html}
+\begin{frame}{Junit 5 - New functionality}
+
+  Custom display names - \texttt{@DisplayName} annotation allows us to provide custom display names for test classes and methods which can have spaces, special characters, and emojis.
+
+  Nested test classes - non-static nested classes (i.e. inner classes) can serve as @Nested test classes for logical grouping of test cases. 
+
+  Tagging and filtering - It is possible yo tag test classes and test methods with your  identifiers using the \texttt{@Tag} annotation. 
+
+  Meta-annotations and composed annotations - This allows us to create a custom composed annotation that will inherit the semantics of its meta-annotations.
+
+  Dynamic tests - JUnit Jupiter introduces a of dynamic tests which are generated at runtime by a factory method annotated with \texttt{@TestFactory} annotation
+
+  Repeated tests - Annotating the test method with \texttt{@RepeatedTest} annotation and specifying the number of repetitions.
+
+  Parameterized tests - Run a test multiple times with different arguments by annotating the test method with \texttt{@ParameterizedTest} annotation 
+  % and declaring at least one source to provide the arguments. 
 
 \end{frame}
 
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Example}
+\subsection{First Example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\begin{frame}[fragile]{\texttt{ComplexNumber} class -- Class Under Test (CUT) I}
+\begin{frame}[fragile]{\texttt{ComplexNumber} class -- Class Under Test (CUT)}
 
 We will use \texttt{ComplexNumber} class and later this class will be used to calculate quadratic equations.
 
@@ -612,8 +647,7 @@ And the operations are as follows:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\begin{frame}[fragile]{\texttt{ComplexNumber} class -- Class Under Test (CUT) II}
-
+\begin{frame}[fragile]{\texttt{ComplexNumber} class -- Class Under Test}
 
 
 \begin{lstlisting}[language=Java,basicstyle=\scriptsize]
@@ -666,71 +700,11 @@ public boolean equals(Object anObject) {
 
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]
-\begin{lstlisting}[language=JAVA,basicstyle=\scriptsize]
-TO BE COMPLETED
-
-
-\end{lstlisting}
-\end{frame}
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Test Suites}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-
-We can run multiple test cases at a time or a selection of several classes. This is carried out with test suites.
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]
-
-\begin{lstlisting}[language=JAVA,basicstyle=\scriptsize]
-Example of test suites.
-\end{lstlisting}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]{TestSuite in JUnit 4}
-
-
-\begin{lstlisting}[language=JAVA,basicstyle=\scriptsize]
-@RunWith(value=Suite.class)
-@SuiteClasses(value={TestComputeClass.class, TestComputeClass2.class})
-public class AllTests {
-...
-}
-\end{lstlisting}
-\end{frame}
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{JUnit in Netbeans}
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{JUnit in Eclipse}
+% \subsection{JUnit in Eclipse}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -900,24 +874,19 @@ This method destroys the classes before each test is executed.
 Now we can write unit tests:
 
 \begin{lstlisting}[language=Java,basicstyle=\tiny]
-public void testGetReal() {
-  System.out.println("getReal");
-  double expResult = 0.0;
-  double result = cZeroOne.getReal();
-  assertEquals(expResult, result);
-}
-
+  @Test  
+  public void testGetReal() {
+    System.out.println("getReal");
+    double expResult = 0.0;
+    double result = cZeroOne.getReal();
+    assertEquals(expResult, result);
+  }
+  @Test
   public void testAdd() {
-  System.out.println("add");
-  ComplexNumber result = cZeroOne.add(cOneZero);
-  assertEquals(cOneOne, result);
-}
-
-public void testMultiply() {
-  System.out.println("multiply");
-  ComplexNumber result = cZeroOne.multiply(cOneZero);
-  assertEquals(cZeroOne, result);
-}
+    System.out.println("add");
+    ComplexNumber result = cZeroOne.add(cOneZero);
+    assertEquals(cOneOne, result);
+  }
 \end{lstlisting}
 \end{frame}
 
@@ -925,7 +894,14 @@ public void testMultiply() {
 \begin{frame}[fragile]
 
 \begin{lstlisting}[language=Java,basicstyle=\tiny]
-public void testEquals() {
+  @Test
+  public void testMultiply() {
+    System.out.println("multiply");
+    ComplexNumber result = cZeroOne.multiply(cOneZero);
+    assertEquals(cZeroOne, result);
+  }
+  @Test
+  public void testEquals() {
   System.out.println("equals");
   boolean expResult = false;
   boolean result = cZeroOne.equals(cOneZero);
@@ -933,9 +909,6 @@ public void testEquals() {
 }
 \end{lstlisting}
 
-% If you have some problems with \texttt{@test} label and asserts, import this package:
-
-% \texttt{import static org.junit.Assert.*;}
 
 \end{frame}
 
@@ -943,14 +916,23 @@ public void testEquals() {
 
 \begin{frame}
 
-To run the test: 
-
-Right click on your CUT (Class Under Test), select MoreUnit and run tests.
+We usually run the test with IDEs and we will see something similar to the following:
 
 \begin{center}
 \includegraphics[width=100pt]{./figs/Results}
 \end{center}
 
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Testing Suites}
+
+
+\begin{frame}[fragile]{Suites}
+  To Do
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1040,8 +1022,6 @@ In general private methods are not tested directly (they are tested indirectly t
 
 \begin{frame}{Parametrized tests}
 
-In this section we will use JUnit4 to do a parametrized test over the quadratic equation code.
-
 The parametrized test is an automated test in which the parameters change automatically.
 
 \end{frame}
@@ -1122,7 +1102,7 @@ Advantages of using mock objects include:
  \item They allow us to reduce the testing time with simpler and faster classes
 \end{itemize}
 
-In Java, there are multiple frameworks JMock, Easymock and Mockito.
+In Java, well-known frameworks include: Mockito, JMock and Easymock.
 
 \end{frame}
 
@@ -1650,14 +1630,14 @@ public void getImaginaryPart2() throws Exception {
 
 \begin{frame}[fragile]{Summary}
 
-jUnit is a must in software engineering. 
+JUnit is a must in software engineering. 
 
 It can be used in combination with other frameworks such as Mockito, EasyMock, etc.
 
 It should be part of the software development life cycle with:
 \begin{itemize}
   \item Continuous integration
-  \item Configuration management
+  \item Configuration management, e.g., Git.
   \item etc.
 \end{itemize}
 
