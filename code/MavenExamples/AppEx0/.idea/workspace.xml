@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SPLITTER_PROPORTION" value="0.6719858" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="53fba020-a700-4ad5-90c5-ef0581152417" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1jF3Xrn7AkhBO74lM4u26ZmuqPZ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="uah" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="uah" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn test" />
+      <command value="mvn clean" />
+      <command value="mvn compile" />
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.AppTestJUnit5.testApp">
+    <configuration name="All in basket1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AppEx0" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppTestJUnit3.testApp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AppEx0" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="uah.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="uah" />
+      <option name="MAIN_CLASS_NAME" value="uah.AppTestJUnit3" />
+      <option name="METHOD_NAME" value="testApp" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppTestJUnit5.testApp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AppEx0" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="uah.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="uah" />
+      <option name="MAIN_CLASS_NAME" value="uah.AppTestJUnit5" />
+      <option name="METHOD_NAME" value="testApp" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppTestJUnit5.testAppJunit5" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AppEx0" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="uah.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="uah" />
+      <option name="MAIN_CLASS_NAME" value="uah.AppTestJUnit5" />
+      <option name="METHOD_NAME" value="testAppJunit5" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="basket1 [test]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="test" />
+              </list>
+            </option>
+            <option name="pomFileName" value="pom.xml" />
+            <option name="profilesMap">
+              <map>
+                <entry key="Dtest=AppTest*" value="false" />
+              </map>
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.AppTestJUnit5.testApp" />
+        <item itemvalue="Maven.basket1 [test]" />
+        <item itemvalue="JUnit.All in basket1" />
+        <item itemvalue="JUnit.AppTestJUnit3.testApp" />
+        <item itemvalue="JUnit.AppTestJUnit5.testAppJunit5" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="53fba020-a700-4ad5-90c5-ef0581152417" name="Default Changelist" comment="" />
+      <created>1603386055932</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1603386055932</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="665" y="233" width="732" height="644" key="#Inspections" timestamp="1603444117470">
+      <screen x="56" y="27" width="1864" height="1053" />
+    </state>
+    <state x="665" y="233" width="732" height="644" key="#Inspections/56.27.1864.1053/1920.0.1920.1080@56.27.1864.1053" timestamp="1603444117470" />
+    <state width="1286" height="296" key="GridCell.Tab.0.bottom" timestamp="1603454056064">
+      <screen x="56" y="27" width="1864" height="1053" />
+    </state>
+    <state width="1286" height="296" key="GridCell.Tab.0.bottom/56.27.1864.1053/1920.0.1920.1080@56.27.1864.1053" timestamp="1603454056064" />
+    <state width="1286" height="296" key="GridCell.Tab.0.center" timestamp="1603454056064">
+      <screen x="56" y="27" width="1864" height="1053" />
+    </state>
+    <state width="1286" height="296" key="GridCell.Tab.0.center/56.27.1864.1053/1920.0.1920.1080@56.27.1864.1053" timestamp="1603454056064" />
+    <state width="1286" height="296" key="GridCell.Tab.0.left" timestamp="1603454056064">
+      <screen x="56" y="27" width="1864" height="1053" />
+    </state>
+    <state width="1286" height="296" key="GridCell.Tab.0.left/56.27.1864.1053/1920.0.1920.1080@56.27.1864.1053" timestamp="1603454056064" />
+    <state width="1286" height="296" key="GridCell.Tab.0.right" timestamp="1603454056064">
+      <screen x="56" y="27" width="1864" height="1053" />
+    </state>
+    <state width="1286" height="296" key="GridCell.Tab.0.right/56.27.1864.1053/1920.0.1920.1080@56.27.1864.1053" timestamp="1603454056064" />
+    <state x="719" y="180" width="963" height="574" key="SettingsEditor" timestamp="1603440986943">
+      <screen x="56" y="27" width="1864" height="1053" />
+    </state>
+    <state x="719" y="180" width="963" height="574" key="SettingsEditor/56.27.1864.1053/1920.0.1920.1080@56.27.1864.1053" timestamp="1603440986943" />
+    <state x="631" y="321" width="442" height="367" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1603448759470">
+      <screen x="56" y="27" width="1864" height="1053" />
+    </state>
+    <state x="631" y="321" width="442" height="367" key="com.intellij.testIntegration.createTest.CreateTestDialog/56.27.1864.1053/1920.0.1920.1080@56.27.1864.1053" timestamp="1603448759470" />
+    <state x="652" y="252" width="672" height="677" key="run.anything.popup" timestamp="1603445054711">
+      <screen x="56" y="27" width="1864" height="1053" />
+    </state>
+    <state x="652" y="252" width="672" height="677" key="run.anything.popup/56.27.1864.1053/1920.0.1920.1080@56.27.1864.1053" timestamp="1603445054711" />
+    <state x="725" y="260" width="672" height="678" key="search.everywhere.popup" timestamp="1603452551551">
+      <screen x="56" y="27" width="1864" height="1053" />
+    </state>
+    <state x="725" y="260" width="672" height="678" key="search.everywhere.popup/56.27.1864.1053/1920.0.1920.1080@56.27.1864.1053" timestamp="1603452551551" />
+  </component>
+</project>
