@@ -1,0 +1,67 @@
+{
+  "id": "d9055361-271e-4071-9743-33df6dbc695b",
+  "version": "2.0",
+  "name": "test1-uah",
+  "url": "https://escuelapolitecnica.uah.es",
+  "tests": [{
+    "id": "bd187dd2-358c-4c4a-afa6-71c43f569221",
+    "name": "test1",
+    "commands": [{
+      "id": "9a5a8d8d-0aeb-4897-bea7-6c7aeddf3439",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9b4b7088-fa7a-45d5-828f-ca4e376d4d09",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "752x615",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2c5247de-382f-4a5f-a8db-25a67c201947",
+      "comment": "",
+      "command": "assertTitle",
+      "target": "Escuela Politécnica Superior - UAH",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "508222d3-32de-4010-bbaa-1e4077888792",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=address",
+      "targets": [
+        ["css=address", "css:finder"],
+        ["xpath=//address", "xpath:position"],
+        ["xpath=//address[contains(.,'Campus Universitario. Ctra. Madrid-Barcelona, Km. 33,600. Alcalá de Henares (Madrid)')]", "xpath:innerText"]
+      ],
+      "value": "Campus Universitario. Ctra. Madrid-Barcelona, Km. 33,600. Alcalá de Henares (Madrid)"
+    }, {
+      "id": "f4bf8c0a-3a1a-42e9-aa3e-4a270c254848",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Aula Virtual",
+      "targets": [
+        ["linkText=Aula Virtual", "linkText"],
+        ["css=.col-md-6 li:nth-child(4) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Aula Virtual')]", "xpath:link"],
+        ["xpath=//a[@href='http://www.uah.es/aula_virtual/']", "xpath:href"],
+        ["xpath=//div[3]/ul/li[4]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Aula Virtual')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "72720295-2a26-4513-870c-d7190b939838",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["bd187dd2-358c-4c4a-afa6-71c43f569221"]
+  }],
+  "urls": ["https://escuelapolitecnica.uah.es/"],
+  "plugins": []
+}
