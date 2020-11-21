@@ -7,12 +7,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 public class HeadlessExample {
 
   @Test
-  public void headlessTest() {
+  public void headlessChromeTest() {
 
     System.setProperty("webdriver.chrome.driver", "./src/test/resources/chromedriver");
 
@@ -38,6 +39,21 @@ public class HeadlessExample {
   }
 
   @Test
+  void headlessFirefoxTest() {
+    System.setProperty("webdriver.gecko.driver", "./src/test/resources/geckodriver");
+
+    // set Firefox as Headless
+    FirefoxOptions options = new FirefoxOptions();
+    options.setHeadless(true);
+
+    WebDriver driver=new FirefoxDriver(options);  //Instantiate Firefox Driver
+    driver.get("https://escuelapolitecnica.uah.es/");
+    
+    System.out.println("Title of the page:" + driver.getTitle());
+    System.out.println("URL of the page:" + driver.getCurrentUrl());
+  }
+
+  @Test
   void HTMLUnitDriver() {
     // create instance for the HtmlUnitWebDriver
     HtmlUnitDriver driver = new HtmlUnitDriver();
@@ -50,3 +66,4 @@ public class HeadlessExample {
   }
 
 }
+
