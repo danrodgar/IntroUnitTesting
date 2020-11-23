@@ -33,4 +33,9 @@
 *.class
 *.war
 
-
+.project
+.classpath
+.settings
+.idea
+*.iml
+target/
