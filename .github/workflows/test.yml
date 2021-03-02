@@ -33,4 +33,3 @@ jobs:
       # Runs maven to download the dependencies and test the files
       - name: Step 3.1 - Have GitHub Actions Build Maven calculatorExample Project
         run: cd code/calculatorExample ; mvn -B package --file pom.xml
-          echo test, and deploy your project.
