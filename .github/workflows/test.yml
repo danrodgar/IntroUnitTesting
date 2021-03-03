@@ -34,5 +34,5 @@ jobs:
       - name: Step 3.1 - Have GitHub Actions Build Maven calculatorExample Project
         run: cd code/calculatorExample ; mvn -B package --file pom.xml
         
-      - name: Step 3.2 - Have GitHub Actions Build Maven complexExample Project
-        run: cd ../complexExample ; mvn -B package --file pom.xml
+      - name: Step 3.2 - Have GitHub Actions Build Maven complexNumber Project
+        run: cd code/complexNumber ; mvn -B package --file pom.xml
