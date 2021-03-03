@@ -36,3 +36,6 @@ jobs:
         
       - name: Step 3.2 - Have GitHub Actions Build Maven complexNumber Project
         run: cd code/complexNumber ; mvn -B package --file pom.xml
+        
+      - name: Step 3.2 - Have GitHub Actions Build Maven EasyMockExample Project
+        run: cd code/EasyMockExample ; mvn -B package --file pom.xml
