@@ -45,3 +45,9 @@ jobs:
         
       - name: Step 3.5 - Have GitHub Actions Build Maven MockitoATM Project
         run: cd code/MockitoATM ; mvn -B package --file pom.xml
+        
+      - name: Step 3.6 - Have GitHub Actions Build Maven SeleniumTestExample Project
+        run: cd code/SeleniumTestExample
+        
+      - name: Step 3.7 - Have GitHub Actions Build Maven TDDExampleFactorial Project
+        run: cd code/TDDExampleFactorial ; mvn -B package --file pom.xml
