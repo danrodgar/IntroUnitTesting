@@ -1,4 +1,4 @@
-name: CI
+name: Tests
 
 # Controls when the action will run. 
 on:
@@ -35,4 +35,4 @@ jobs:
         run: cd code/calculatorExample ; mvn -B package --file pom.xml
         
       - name: Step 3.2 - Have GitHub Actions Build Maven complexExample Project
-        run: cd code/complexExample ; mvn -B package --file pom.xml
+        run: cd ../code/complexExample ; mvn -B package --file pom.xml
