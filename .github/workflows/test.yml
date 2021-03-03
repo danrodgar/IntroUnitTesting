@@ -1,4 +1,4 @@
-name: CI
+name: Tests
 
 # Controls when the action will run. 
 on:
@@ -33,3 +33,9 @@ jobs:
       # Runs maven to download the dependencies and test the files
       - name: Step 3.1 - Have GitHub Actions Build Maven calculatorExample Project
         run: cd code/calculatorExample ; mvn -B package --file pom.xml
+        
+      - name: Step 3.2 - Have GitHub Actions Build Maven complexNumber Project
+        run: cd code/complexNumber ; mvn -B package --file pom.xml
+        
+      - name: Step 3.2 - Have GitHub Actions Build Maven EasyMockExample Project
+        run: cd code/EasyMockExample ; mvn -B package --file pom.xml
