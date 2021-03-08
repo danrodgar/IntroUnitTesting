@@ -50,7 +50,7 @@
                     </execution>
                     <execution>
                         <id>report</id>
-                        <phase>test</phase>
+                        <phase>prepare-agent</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
