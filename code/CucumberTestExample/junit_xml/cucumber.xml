@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite failures="1" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="1" time="0">
+    <testcase classname="Search" name="Search UAH degrees" time="0">
+        <failure message="The scenario has pending or undefined step(s)"><![CDATA[Given the user is located in the index page.................................undefined
+When the user enters studies section........................................undefined
+And the user clicks in the degree section...................................undefined
+Then the page with the degrees is shown.....................................undefined
+]]></failure>
+    </testcase>
+</testsuite>
