@@ -35,7 +35,7 @@ jobs:
         run: cd code/calculatorExample ; mvn -B package --file pom.xml
         
       - name: Step 3.1.2 - Generate JaCoCo Badge calculatorExample Project
-        id: jacoco
+        id: jacoco1
         uses: cicirello/jacoco-badge-generator@v2.0.1
         with: 
           jacoco-csv-file: code/calculatorExample/target/site/jacoco/jacoco.csv
@@ -45,7 +45,7 @@ jobs:
         run: cd code/complexNumber ; mvn -B package --file pom.xml
 
       - name: Step 3.2.2 - Generate JaCoCo Badge complexNumber Project
-        id: jacoco
+        id: jacoco2
         uses: cicirello/jacoco-badge-generator@v2.0.1
         with: 
           jacoco-csv-file: code/complexNumber/target/site/jacoco/jacoco.csv
@@ -55,7 +55,7 @@ jobs:
         run: cd code/EasyMockExample ; mvn -B package --file pom.xml
 
       - name: Step 3.3.2 - Generate JaCoCo Badge EasyMockExample Project
-        id: jacoco
+        id: jacoco3
         uses: cicirello/jacoco-badge-generator@v2.0.1
         with: 
           jacoco-csv-file: code/EasyMockExample/target/site/jacoco/jacoco.csv
@@ -65,7 +65,7 @@ jobs:
         run: cd code/MavenExamples/AppEx0 ; mvn -B package --file pom.xml
 
       - name: Step 3.4.2 - Generate JaCoCo Badge MavenExamples Project
-        id: jacoco
+        id: jacoco4
         uses: cicirello/jacoco-badge-generator@v2.0.1
         with: 
           jacoco-csv-file: code/MavenExamples/target/site/jacoco/jacoco.csv
@@ -75,7 +75,7 @@ jobs:
         run: cd code/MockitoATM ; mvn -B package --file pom.xml
 
       - name: Step 3.5.2 - Generate JaCoCo Badge MockitoATM Project
-        id: jacoco
+        id: jacoco5
         uses: cicirello/jacoco-badge-generator@v2.0.1
         with: 
           jacoco-csv-file: code/MockitoATM/target/site/jacoco/jacoco.csv
@@ -85,7 +85,7 @@ jobs:
         run: cd code/TDDExampleFactorial ; mvn -B package --file pom.xml
 
       - name: Step 3.6.2 - Generate JaCoCo Badge TDDExampleFactorial Project
-        id: jacoco
+        id: jacoco6
         uses: cicirello/jacoco-badge-generator@v2.0.1
         with: 
           jacoco-csv-file: code/TDDExampleFactorial/target/site/jacoco/jacoco.csv
