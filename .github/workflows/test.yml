@@ -97,30 +97,30 @@ jobs:
       - name: Steps 5.1 - Upload JaCoCo coverage report calculatorExample project
         uses: actions/upload-artifact@v2
         with:
-          name: jacoco-report
+          name: jacoco-report-calculatorExample
           path: code/calculatorExample/target/site/jacoco/
 
       - name: Steps 5.2 - Upload JaCoCo coverage report complexNumber project
         uses: actions/upload-artifact@v2
         with:
-          name: jacoco-report
+          name: jacoco-report-complexNumber
           path: code/complexNumber/target/site/jacoco/
 
       - name: Steps 5.3 - Upload JaCoCo coverage report MavenExamples project
         uses: actions/upload-artifact@v2
         with:
-          name: jacoco-report
+          name: jacoco-report-MavenExamples
           path: code/MavenExamples/AppEx0/target/site/jacoco/
 
       - name: Steps 5.4 - Upload JaCoCo coverage report MockitoATM project
         uses: actions/upload-artifact@v2
         with:
-          name: jacoco-report
+          name: jacoco-report-MockitoATM
           path: code/MockitoATM/target/site/jacoco/
 
       - name: Steps 5.5 - Upload JaCoCo coverage report TDDExampleFactorial project
         uses: actions/upload-artifact@v2
         with:
-          name: jacoco-report
+          name: jacoco-report-TDDExampleFactorial
           path: code/TDDExampleFactorial/target/site/jacoco/
 
