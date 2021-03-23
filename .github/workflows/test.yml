@@ -53,13 +53,6 @@ jobs:
         
       - name: Step 3.3.1 - Have GitHub Actions Build Maven EasyMockExample Project
         run: cd code/EasyMockExample ; mvn -B package --file pom.xml
-
-      - name: Step 3.3.2 - Generate JaCoCo Badge EasyMockExample Project
-        id: jacoco3
-        uses: cicirello/jacoco-badge-generator@v2.0.1
-        with: 
-          jacoco-csv-file: code/EasyMockExample/target/site/jacoco/jacoco.csv
-          coverage-badge-filename: badge_EasyMockExample.svg
         
       - name: Step 3.4.1 - Have GitHub Actions Build Maven MavenExamples Project
         run: cd code/MavenExamples/AppEx0 ; mvn -B package --file pom.xml
@@ -68,7 +61,7 @@ jobs:
         id: jacoco4
         uses: cicirello/jacoco-badge-generator@v2.0.1
         with: 
-          jacoco-csv-file: code/MavenExamples/target/site/jacoco/jacoco.csv
+          jacoco-csv-file: code/MavenExamples/AppEx0/target/site/jacoco/jacoco.csv
           coverage-badge-filename: badge_MavenExamples.svg
         
       - name: Step 3.5.1 - Have GitHub Actions Build Maven MockitoATM Project
@@ -113,25 +106,19 @@ jobs:
           name: jacoco-report
           path: code/complexNumber/target/site/jacoco/
 
-      - name: Steps 5.3 - Upload JaCoCo coverage report EasyMockExample project
+      - name: Steps 5.3 - Upload JaCoCo coverage report MavenExamples project
         uses: actions/upload-artifact@v2
         with:
           name: jacoco-report
-          path: code/EasyMockExample/target/site/jacoco/
+          path: code/MavenExamples/AppEx0/target/site/jacoco/
 
-      - name: Steps 5.4 - Upload JaCoCo coverage report MavenExamples project
-        uses: actions/upload-artifact@v2
-        with:
-          name: jacoco-report
-          path: code/MavenExamples/target/site/jacoco/
-
-      - name: Steps 5.5 - Upload JaCoCo coverage report MockitoATM project
+      - name: Steps 5.4 - Upload JaCoCo coverage report MockitoATM project
         uses: actions/upload-artifact@v2
         with:
           name: jacoco-report
           path: code/MockitoATM/target/site/jacoco/
 
-      - name: Steps 5.6 - Upload JaCoCo coverage report TDDExampleFactorial project
+      - name: Steps 5.5 - Upload JaCoCo coverage report TDDExampleFactorial project
         uses: actions/upload-artifact@v2
         with:
           name: jacoco-report
