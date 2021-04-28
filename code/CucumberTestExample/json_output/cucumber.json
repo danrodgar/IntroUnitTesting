@@ -47,6 +47,58 @@
             "keyword": "Then "
           }
         ]
+      },
+      {
+        "line": 9,
+        "name": "Search information protocols UAH EPS for Covid-19",
+        "description": "",
+        "id": "search;search-information-protocols-uah-eps-for-covid-19",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 10,
+            "name": "the user is located in the index page",
+            "match": {},
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 11,
+            "name": "the user enters the Covid-19 information",
+            "match": {},
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 12,
+            "name": "the user clicks at the Protocols from EPS",
+            "match": {},
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "undefined"
+            },
+            "line": 13,
+            "name": "the page from general information from UAH regarding Covid-19 is shown",
+            "match": {},
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 8,
+            "name": "@Sikuli"
+          }
+        ]
       }
     ],
     "name": "Search",
