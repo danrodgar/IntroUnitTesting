@@ -10,6 +10,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <sonar.projectKey>Javier-DlaP_IntroUnitTesting</sonar.projectKey>
+        <sonar.organization>javier-dlap</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <dependencies>
@@ -26,11 +29,11 @@
     
     <build>
         <plugins>
-            <plugin>
+            <!-- <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>3.7.0.1746</version>
-            </plugin>
+            </plugin> -->
             
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
