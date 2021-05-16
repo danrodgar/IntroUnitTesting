@@ -35,8 +35,8 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: Step 5 - Build and analyze
+      - name: Step 5 - Build and analyze complexNumber
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+        run: cd code/complexNumber; mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
