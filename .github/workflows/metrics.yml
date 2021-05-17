@@ -39,46 +39,57 @@ jobs:
           cd target
           java -jar ck-0.6.5-SNAPSHOT-jar-with-dependencies.jar ../../IntroUnitTesting/
 
-      - name: Step 6.1 - Execute CKJM on assertions project
+      - name: Step 6 - Build Maven projects
+        run: |
+          cd code/calculatorExample ; mvn -B package --file pom.xml
+          cd code/complexNumber ; mvn -B package --file pom.xml
+          cd code/CucumberTestExample ; mvn -B package --file pom.xml
+          cd code/EasyMockExample ; mvn -B package --file pom.xml
+          cd code/MavenExamples/AppEx0 ; mvn -B package --file pom.xml
+          cd code/MockitoATM ; mvn -B package --file pom.xml
+          cd code/SeleniumTestExample ; mvn -B package --file pom.xml
+          cd code/TDDExampleFactorial ; mvn -B package --file pom.xml
+
+      - name: Step 7.1 - Execute CKJM on assertions project
         run: |
           java -jar ckjm-1.9/build/ckjm-1.9.jar  IntroUnitTesting/code/assertions/AssertionExample.class
           java -jar ckjm-1.9/build/ckjm-1.9.jar IntroUnitTesting/code/assertions/*.class
+
+      - name: Step 7.2 - Execute CKJM on calculatorExample project
+        run: java -jar ckjm-1.9/build/ckjm-1.9.jar IntroUnitTesting/code/calculatorExample/target/classes/calculator/*.class
           
-      - name: Step 6.2 - Execute CKJM on complexNumber project
+      - name: Step 7.3 - Execute CKJM on complexNumber project
         run: |
           java -jar ckjm-1.9/build/ckjm-1.9.jar IntroUnitTesting/code/complexNumber/target/classes/complexNumber/*.class
           java -jar ckjm-1.9/build/ckjm-1.9.jar IntroUnitTesting/code/complexNumber/target/test-classes/complexNumber/*.class
       
-      - name: Step 6.3 - Execute CKJM on CucumberTestExample project
+      - name: Step 7.4 - Execute CKJM on CucumberTestExample project
         run: |
           java -jar ckjm-1.9/build/ckjm-1.9.jar IntroUnitTesting/code/CucumberTestExample/target/test-classes/steps/*.class
           java -jar ckjm-1.9/build/ckjm-1.9.jar IntroUnitTesting/code/CucumberTestExample/target/test-classes/*.class
       
-      - name: Step 6.4 - Execute CKJM on EasyMockExample project
+      - name: Step 7.5 - Execute CKJM on EasyMockExample project
         run: |
           java -jar ckjm-1.9/build/ckjm-1.9.jar IntroUnitTesting/code/EasyMockExample/target/classes/uah/*.class
           java -jar ckjm-1.9/build/ckjm-1.9.jar IntroUnitTesting/code/EasyMockExample/target/test-classes/uah/*.class
       
-      - name: Step 6.5 - Execute CKJM on MavenExamples project
+      - name: Step 7.6 - Execute CKJM on MavenExamples project
         run: |
           java -jar ckjm-1.9/build/ckjm-1.9.jar IntroUnitTesting/code/MavenExamples/AppEx0/target/classes/uah/*.class
           java -jar ckjm-1.9/build/ckjm-1.9.jar IntroUnitTesting/code/MavenExamples/AppEx0/target/test-classes/uah/*.class
 
-      - name: Step 6.6 - Execute CKJM on MockitoATM project
+      - name: Step 7.7 - Execute CKJM on MockitoATM project
         run: |
           java -jar ckjm-1.9/build/ckjm-1.9.jar IntroUnitTesting/code/MockitoATM/target/classes/uah/*.class
           java -jar ckjm-1.9/build/ckjm-1.9.jar IntroUnitTesting/code/MockitoATM/target/test-classes/uah/*.class
 
-      - name: Step 6.7 - Execute CKJM on SeleniumTestExample project
-        run: |
-          java -jar ckjm-1.9/build/ckjm-1.9.jar IntroUnitTesting/code/SeleniumTestExample/target/classes/uah/*.class
-          java -jar ckjm-1.9/build/ckjm-1.9.jar IntroUnitTesting/code/SeleniumTestExample/target/test-classes/uah/Test1GeneratedFromSideFile.class
-          java -jar ckjm-1.9/build/ckjm-1.9.jar IntroUnitTesting/code/SeleniumTestExample/target/test-classes/uah/TestClass.class
+      - name: Step 7.8 - Execute CKJM on SeleniumTestExample project
+        run: java -jar ckjm-1.9/build/ckjm-1.9.jar IntroUnitTesting/code/SeleniumTestExample/target/classes/uah/*.class
 
-      - name: Step 6.8 - Execute CKJM on TDDExampleFactorial project
+      - name: Step 7.9 - Execute CKJM on TDDExampleFactorial project
         run: java -jar ckjm-1.9/build/ckjm-1.9.jar IntroUnitTesting/code/TDDExampleFactorial/target/classes/uah/*.class
 
-      - name: Step 7 - Upload metrics report
+      - name: Step 8 - Upload metrics report
         uses: actions/upload-artifact@v2
         with:
           name: CK_report

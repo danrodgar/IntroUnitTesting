@@ -35,32 +35,49 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: Step 5.1 - Build and analyze calculatorExample
+      - name: Step 5 - Build Maven projects
+        run: |
+          cd code/calculatorExample ; mvn -B package --file pom.xml
+          cd code/complexNumber ; mvn -B package --file pom.xml
+          cd code/CucumberTestExample ; mvn -B package --file pom.xml
+          cd code/EasyMockExample ; mvn -B package --file pom.xml
+          cd code/MavenExamples/AppEx0 ; mvn -B package --file pom.xml
+          cd code/MockitoATM ; mvn -B package --file pom.xml
+          cd code/SeleniumTestExample ; mvn -B package --file pom.xml
+          cd code/TDDExampleFactorial ; mvn -B package --file pom.xml
+
+      - name: Step 6.1 - Build and analyze calculatorExample
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: cd code/calculatorExample ; mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
 
-      - name: Step 5.2 - Build and analyze complexNumber
+      - name: Step 6.2 - Build and analyze complexNumber
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: cd code/complexNumber ; mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
 
-      - name: Step 5.3 - Build and analyze CucumberTestExample
+      - name: Step 6.3 - Build and analyze CucumberTestExample
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: cd code/CucumberTestExample ; mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
 
-      - name: Step 5.4 - Build and analyze MavenExamples
+      - name: Step 6.4 - Build and analyze MavenExamples
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: cd code/MavenExamples/AppEx0 ; mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
 
-      - name: Step 5.5 - Build and analyze TDDExampleFactorial
+      - name: Step 6.5 - Build and analyze TDDExampleFactorial
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: cd code/TDDExampleFactorial ; mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+
+      - name: Step 6.6 - Build and analyze SeleniumTestExample
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: cd code/SeleniumTestExample ; mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
