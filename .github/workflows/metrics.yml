@@ -47,7 +47,6 @@ jobs:
           cd ../EasyMockExample ; mvn -B package --file pom.xml
           cd ../MavenExamples/AppEx0 ; mvn -B package --file pom.xml
           cd ../../MockitoATM ; mvn -B package --file pom.xml
-          cd ../SeleniumTestExample ; mvn -B package --file pom.xml
           cd ../TDDExampleFactorial ; mvn -B package --file pom.xml
 
       - name: Step 7.1 - Execute CKJM on assertions project

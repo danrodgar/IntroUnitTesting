@@ -64,14 +64,11 @@ jobs:
         with: 
           jacoco-csv-file: code/MockitoATM/target/site/jacoco/jacoco.csv
           coverage-badge-filename: badge_MockitoATM.svg
-
-      - name: Step 3.7.1 - Have GitHub Actions Build Maven SeleniumTestExample Project
-        run: cd code/SeleniumTestExample ; mvn -B package --file pom.xml
         
-      - name: Step 3.8.1 - Have GitHub Actions Build Maven TDDExampleFactorial Project
+      - name: Step 3.7.1 - Have GitHub Actions Build Maven TDDExampleFactorial Project
         run: cd code/TDDExampleFactorial ; mvn -B package --file pom.xml
 
-      - name: Step 3.8.2 - Generate JaCoCo Badge TDDExampleFactorial Project
+      - name: Step 3.7.2 - Generate JaCoCo Badge TDDExampleFactorial Project
         id: jacoco6
         uses: cicirello/jacoco-badge-generator@v2.0.1
         with: 

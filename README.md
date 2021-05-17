@@ -31,7 +31,7 @@
 #### - EasyMockExample
 - EasyMock
 - JUnit
-- Maven
+- [Maven](https://github.com/Javier-DlaP/IntroUnitTesting/actions/workflows/test.yml)
 
 #### - MavenExamples ![codecov](.github/badges/badge_MavenExamples.svg)
 - JUnit
@@ -51,7 +51,7 @@
 - Selenium
 - JUnit
 - Hamcrest
-- [Maven](https://github.com/Javier-DlaP/IntroUnitTesting/actions/workflows/test.yml)
+- Maven
 - [CK/CKJM](https://github.com/Javier-DlaP/IntroUnitTesting/actions/workflows/metrics.yml)
 
 #### - TDDExampleFactorial ![codecov](.github/badges/badge_TDDExampleFactorial.svg)
