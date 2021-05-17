@@ -29,10 +29,8 @@ jobs:
 
       - name: Step 4 - Download and unzip CKJM
         run: |
-          sudo apt install curl \
-          curl --remote-name https://www.spinellis.gr/sw/ckjm/ckjm-1.9.zip \
-          sudo apt-get install unzip \
-          unzip ckjm-1.9.zip
+          wget -O https://www.spinellis.gr/sw/ckjm/ckjm-1.9.zip \
+          7z x ckjm-1.9.zip
 
       - name: Step 5 - Execute CK over JAR files
         run: |
