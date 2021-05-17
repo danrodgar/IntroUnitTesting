@@ -1,36 +1,24 @@
 name: Tests
 
-# Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Step 1 - Checkout main brach from GitHub
         uses: actions/checkout@v2
 
-      # Set up the JDK
       - name: Step 2 - Set up JDK 1.8
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
 
-      # Runs maven to download the dependencies and test the files and create badges
       - name: Step 3.1.1 - Have GitHub Actions Build Maven calculatorExample Project
         run: cd code/calculatorExample ; mvn -B package --file pom.xml
         

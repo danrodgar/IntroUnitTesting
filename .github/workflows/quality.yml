@@ -2,9 +2,9 @@ name: Quality
 
 on:
   push:
-    braches: [ master ]
+    branches: [ master ]
   pull_request:
-    braches: [ master ]
+    branches: [ master ]
 
 jobs:
   build:
