@@ -38,13 +38,13 @@ jobs:
       - name: Step 5 - Build Maven projects
         run: |
           cd code/calculatorExample ; mvn -B package --file pom.xml
-          cd code/complexNumber ; mvn -B package --file pom.xml
-          cd code/CucumberTestExample ; mvn -B package --file pom.xml
-          cd code/EasyMockExample ; mvn -B package --file pom.xml
-          cd code/MavenExamples/AppEx0 ; mvn -B package --file pom.xml
-          cd code/MockitoATM ; mvn -B package --file pom.xml
-          cd code/SeleniumTestExample ; mvn -B package --file pom.xml
-          cd code/TDDExampleFactorial ; mvn -B package --file pom.xml
+          cd ../complexNumber ; mvn -B package --file pom.xml
+          cd ../CucumberTestExample ; mvn -B package --file pom.xml
+          cd ../EasyMockExample ; mvn -B package --file pom.xml
+          cd ../MavenExamples/AppEx0 ; mvn -B package --file pom.xml
+          cd ../../MockitoATM ; mvn -B package --file pom.xml
+          cd ../SeleniumTestExample ; mvn -B package --file pom.xml
+          cd ../TDDExampleFactorial ; mvn -B package --file pom.xml
 
       - name: Step 6.1 - Build and analyze calculatorExample
         env:
