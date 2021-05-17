@@ -29,7 +29,7 @@ jobs:
 
       - name: Step 4 - Download and unzip CKJM
         run: |
-          wget https://www.spinellis.gr/sw/ckjm/ckjm-1.9.zip -O ~/  \
+          wget https://www.spinellis.gr/sw/ckjm/ckjm-1.9.zip -O ~/ckjm-1.9.zip  \
           7z x ckjm-1.9.zip
 
       - name: Step 5 - Execute CK over JAR files
