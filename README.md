@@ -52,7 +52,6 @@
 - JUnit
 - Hamcrest
 - Maven
-- [CK/CKJM](https://github.com/Javier-DlaP/IntroUnitTesting/actions/workflows/metrics.yml)
 
 #### - TDDExampleFactorial ![codecov](.github/badges/badge_TDDExampleFactorial.svg)
 - JUnit

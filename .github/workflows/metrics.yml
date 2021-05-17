@@ -82,10 +82,7 @@ jobs:
           java -jar ckjm-1.9/build/ckjm-1.9.jar IntroUnitTesting/code/MockitoATM/target/classes/uah/*.class
           java -jar ckjm-1.9/build/ckjm-1.9.jar IntroUnitTesting/code/MockitoATM/target/test-classes/uah/*.class
 
-      - name: Step 7.8 - Execute CKJM on SeleniumTestExample project
-        run: java -jar ckjm-1.9/build/ckjm-1.9.jar IntroUnitTesting/code/SeleniumTestExample/target/classes/uah/*.class
-
-      - name: Step 7.9 - Execute CKJM on TDDExampleFactorial project
+      - name: Step 7.8 - Execute CKJM on TDDExampleFactorial project
         run: java -jar ckjm-1.9/build/ckjm-1.9.jar IntroUnitTesting/code/TDDExampleFactorial/target/classes/uah/*.class
 
       - name: Step 8 - Upload metrics report

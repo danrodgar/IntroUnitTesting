@@ -63,20 +63,26 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: cd code/CucumberTestExample ; mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
 
-      - name: Step 6.4 - Build and analyze MavenExamples
+      - name: Step 6.4 - Build and analyze EasyMockExample
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: cd code/EasyMockExample ; mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+
+      - name: Step 6.5 - Build and analyze MavenExamples
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: cd code/MavenExamples/AppEx0 ; mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
 
-      - name: Step 6.5 - Build and analyze TDDExampleFactorial
+      - name: Step 6.5 - Build and analyze MockitoATM
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: cd code/MockitoATM ; mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+
+      - name: Step 6.6 - Build and analyze TDDExampleFactorial
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: cd code/TDDExampleFactorial ; mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
-
-      - name: Step 6.6 - Build and analyze SeleniumTestExample
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: cd code/SeleniumTestExample ; mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
