@@ -1,8 +1,8 @@
 # Introduction to Unit Testing
 
 #### - assertions
-- [CK](https://github.com/Javier-DlaP/IntroUnitTesting/actions/workflows/metrics.yml) *(CK_report)*
-- [CKJM](https://github.com/Javier-DlaP/IntroUnitTesting/actions/workflows/metrics.yml) *(Step 7.1)*
+- [CK](https://github.com/danrodgar/IntroUnitTesting/actions/workflows/metrics.yml) *(CK_report)*
+- [CKJM](https://github.com/danrodgar/IntroUnitTesting/actions/workflows/metrics.yml) *(Step 7.1)*
 
 #### - calculatorExample ![codecov](.github/badges/badge_calculatorExample.svg)
 - JUnit
