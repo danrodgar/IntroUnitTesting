@@ -46,9 +46,12 @@ public class ATMTest {
     boolean result = classUnderTest.withdraw(500, mock);
     assertTrue(result);
 
+    boolean result2 = classUnderTest.withdraw(500, mock);
+    assertTrue(result2);
+
     /* We force that the lack of calls is also an error
      */
-    verify(mock, times(1)).withdraw(500);
+    verify(mock, times(2)).withdraw(500);
   }
 
   /** */

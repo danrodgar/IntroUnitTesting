@@ -27,7 +27,7 @@
   captionpos=b,                    % sets the caption-position to bottom
   extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
   frame=single,                    % adds a frame around the code
-  language=Java,                 % the language of the code
+  language=Java,                   % the language of the code
   keywordstyle=\bf,
   showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
   showstringspaces=false,          % underline spaces within strings only
@@ -54,10 +54,6 @@
 % commentstyle=\color{dkgreen},
 % stringstyle=\color{mauve}
 % }
-
-
-
-
 
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
@@ -158,12 +154,10 @@
 \begin{frame}[fragile]{Verification vs. Validation - IEEE Std610.12-1990}
 
 \begin{itemize}
- \item Requirements Validation.\\
- Process of checking that a document or piece of software accurately reflects the customer requirements - i.e. \\
+ \item \alert{Requirements Validation}. Process of checking that a document or piece of software accurately reflects the customer requirements - i.e. \\
  ARE WE BUILDING THE RIGHT SYSTEM?
 
-\item Software Verification \\ Process of ensuring that the product of one phase satisfies the product of a previous phase \\
-Checking that the software produced is a faithful implementation of the requirements specifiedAssessment of the quality of the implementation \\
+\item \alert{Software Verification}. Process of ensuring that the product of one phase satisfies the product of a previous phase. sChecking that the software produced is a faithful implementation of the requirements specifiedAssessment of the quality of the implementation \\
 ARE WE BUILDING IT RIGHT?
 \end{itemize}
 
@@ -179,12 +173,51 @@ ARE WE BUILDING IT RIGHT?
  \includegraphics[width=300pt]{./figs/testing}
 %\caption{}
 \end{figure} 
+\tiny{(Source: Plfeeger)}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Test Driven Development}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}{Fail, Pass, Refactor:  TDD Circle of life}
+
+\begin{figure}
+ \includegraphics[width=200pt]{./figs/tdd-circle-of-life.png}
+%\caption{}
+\end{figure} 
+
+
+\tiny{Source:~\url{https://leantesting-wp.s3.amazonaws.com/resources/wp-content/uploads/2015/02/tdd-circle-of-life.png}}
 
 \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+\begin{frame}{Fail, Pass, Refactor:  TDD Circle of life}
+
+\begin{block}{TDD Life-cycle}
+	\begin{enumerate}
+		\item Identify functionality to include
+		\item Write failing test
+		\item Make it compile as quickly as possible
+		\item Make it pass a quickly as possible
+		\item Refactor: remove duplication while maintaining 100\% pass rate
+		\item Repeat as required
+	\end{enumerate}
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Assertions}
 
@@ -207,6 +240,25 @@ Assertions are part of most programming languages.
 
 \end{frame}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Assertions: History}
+
+\begin{itemize}
+  \item Hoare and Floyd started in the 60s (Hoare logic) the formal verificatin of programs 
+  [[{P}C{Q}]]
+	where $P$ and $Q$ are assertions and $C$ is code.
+	\begin{itemize}
+	\item $P$ precondition 
+	\item $Q$ postcondition
+	\end{itemize}
+\end{itemize}
+
+In other words, a program behaviour can be verified using preconditions, postconditions and invariants.
+
+
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -246,7 +298,6 @@ assert expersion 1; expression 2;
    }
 \end{lstlisting}
 
-
 \end{frame}
 
 
@@ -275,7 +326,6 @@ public class AssertionExample {
    	System.out.println(e.avgMarks(marks));
    }
 }
-
 \end{lstlisting}
 
 
@@ -306,14 +356,19 @@ Otherwise, it will run normally as assertions are design to be run during the te
 
 \begin{frame}[fragile]{Assertions vs Exceptions}
 
-Assertions are design to check the program correctness, i.e, as \emph{preconditions}, \emph{postconditions} or \emph{invariants}.
+Assertions are designed to check the program correctness, i.e, as \emph{preconditions}, \emph{postconditions} or \emph{invariants}.
 
+Assertions can be used to verify the state of a programa but should NOT be used to... 
 \begin{itemize}
- \item Assertions should not be used check method arguments and should not replace program exception handling mechanism.\newline (do)
- \item Assertions should not modify variable values or objects.
- \item Assertion should never be enabled in production code.
+\item Validate arguments of public methods
+\item Substitue the \textbf{exception handling} mechanims of a programming language
+\item Modify values of attributes or objects
+\item Used in production code (assertions abruptly stop the execution of a program)
 \end{itemize}
 
+Exception handling is the process of responding to the occurrence of exceptions (usually in a gracefull manner so that the execution is not interrupted). In Java, this is carried out with \texttt{try() ... catch() ... finally} statements.
+
+Although most programming languages provide assertions, unit testing is usually carried out with frameworks such as jUnit. 
 
 \end{frame}
 
@@ -333,156 +388,116 @@ Assertions are design to check the program correctness, i.e, as \emph{preconditi
      \item Created in 1997 by Erich Gamma and Kent Beck
      \item Simple framework with a small learning curve
      \item Tests can be automated (facilitates regression testing). It allow us to aggregate tests via test suites.
-     \item \textit{De facto} standard, integrated with Ant, Maven and Gradle. Typically run with continuous integration testing tools. 
-     \item \texttt{\url{http://www.junit.org/}}
+     \item \textit{De facto} standard, integrated with Ant and Maven. Typically run with continuous integration testing tools. 
+     %\item \texttt{\url{https://www.junit.org/}}
   \end{itemize}
-\end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{JUnit 5}
+  % \begin{block}{}
+  %   \url{https://www.junit.org/}
+  % \end{block}
 
-\begin{center}
-  \includegraphics[width=150pt]{./figs/jUnit5Logo}
-\end{center}
-  
-The current version of JUnit is JUnit 5 (Jupiter).
-
-~
-
-However JUnit 4 is still in use and popular and many extension frameworks are still based on Junit 4. And even, JUnit3 has been used extensively and it is still legacy code of many projects.
-
-%Main classes: 
-%
-%\begin{center}
-% \includegraphics[width=300pt]{./figs/UMLJUnit3}
-%\end{center}
+  ''Never in the field of software development have so many owed so much to so few lines of code'' (Martin Fowler)
 
 \end{frame}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{JUnit 5 -- Architecture }
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  \begin{center}
-    \includegraphics[width=300pt]{./figs/jUnit5Architecture}
-  \end{center}
-     
-  \end{frame}
+% \begin{frame}{JUnit 3 - (Obsolete)}
 
-  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% There are still a lot of test cases and frameworks that use JUnit 3 or 4. We briefly describe how to do test cases with JUnit 3 and 4 to understand them (But we will only work with JUnit 5).
 
-\begin{frame}{JUnit 5 -- Architecture }
+% JUnit 3 was based on inheritance and name conventions (it is common to still use them). With JUnit 3, we needed to create test classes as follows:
 
-JUnit 5 = JUnit Platform + JUnit Jupiter + JUnit Vintage
-
-\begin{itemize}
-  \item \alert{JUnit Platform} provides Launcher APIs which are used by IDEs and build tools. It also defines TestEngine APIs which are used to develop testing frameworks that run on the platform.
-  \item \alert{JUnit Jupiter} is the new model for writing tests and extensions. It also provides a TestEngine for running Jupiter based tests on the platform.
-  \item \alert{JUnit Vintage} provides a TestEngine for running JUnit 3 and JUnit 4 based tests.
-\end{itemize}
-
-   
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{JUnit 3 - (Obsolete)}
-
-There are still a lot of test cases and frameworks that use JUnit3 or 4. We briefly describe how to do test cases with JUnit3 and 4 to understand them (But we will only work with JUnit 5).
-
-It was based on inheritance and name conventions.
-
-With JUnit3 we needed to create test classes as follows:
-
-\begin{itemize}
- \item Add \texttt{JUnit3<version>.jar} to the \texttt{classpath}
- \item Create a subclass extending the \texttt{TestCase} class provided by JUnit
- \item Define one or more public \texttt{testXXX()} methods in the subclass.
- \begin{itemize}
-  \item Write assert methods inside the \texttt{testXXX()} methods to compare actual results (obtained from the CUT) with the expected results (the oracle)
- \end{itemize}
- \item Optionally, define \texttt{main()} to run the TestCase in batch mode (test runner)
-\end{itemize}
+% \begin{itemize}
+%   \item Add \texttt{JUnit3<version>.jar} to the \texttt{classpath}
+%   \item Create a subclass extending the \texttt{TestCase} class provided by JUnit
+%   \item Define one or more public \texttt{testXXX()} methods in the subclass.
+%   \begin{itemize}
+%     \item Write assert methods inside the \texttt{testXXX()} methods to compare actual results (obtained from the CUT) with the expected results (the oracle)
+%   \end{itemize}
+%   \item Optionally, define \texttt{main()} to run the TestCase in batch mode (test runner)
+% \end{itemize}
 
 
-\end{frame}
+% \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}[fragile]{JUnit 3 (Obsolete) - Architecture }
+% \begin{frame}[fragile]{JUnit 3 (Obsolete) - Architecture }
 
-Main classes: 
+% Main classes: 
 
-\begin{center}
-  \includegraphics[width=300pt]{./figs/UMLJUnit3}
-\end{center}
+% \begin{center}
+%   \includegraphics[width=300pt]{./figs/UMLJUnit3}
+% \end{center}
  
-\end{frame}
+% \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}[fragile]{JUnit3 (Obsolete) Minimal example}
+% \begin{frame}[fragile]{JUnit3 (Obsolete) Minimal example}
 
-\begin{center}
+% \begin{lstlisting}[language=Java,basicstyle=\scriptsize]
+% import junit.framework.TestCase;
 
-\begin{lstlisting}[language=Java,basicstyle=\scriptsize]
-import junit.framework.TestCase;
+% public class MinimalTest extends TestCase {
 
-public class MinimalTest extends TestCase {
+%   public MinimalTest(String name) {
+%     super(name);
+%   }
+%   // Test method
+%   public void testCUT () {
+%     int expected = 2; //expected result
+%     int actual = new CUT(); //get the actual result from CUT
+%     assertTrue(actual, expected);
+%   }
+%   // Not needed, it's possible to use Test runner
+%   public static void main(String[] args){
+%     junit.textui.TestRunner.run(MinimalTest.class);
+%   }
+% }
+% \end{lstlisting}
 
-  public MinimalTest(String name) {
-    super(name);
-  }
-  // Test method
-  public void testCUT () {
-    int expected = 2; //expected result
-    int actual = new CUT(); //get the actual result from CUT
-    assertTrue(actual, expected);
-  }
-  // Not needed, it's possible to use Test runner
-  public static void main(String[] args){
-    junit.textui.TestRunner.run(MinimalTest.class);
-  }
-}
-\end{lstlisting}
-\end{center}
+% \end{frame}
 
-\end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % \begin{frame}[fragile]{JUnit 3 (Obsolete) - Characteristics}
 
-\begin{frame}[fragile]{JUnit 3 (Obsolete) - Characteristics}
+% % Fixtures are used to initialize and release common test data, this is done with \texttt{setUp()} and \texttt{tearDown()}.
 
-  Fixtures are used to initialize and release common test data, this is done with \texttt{setUp()} and \texttt{tearDown()}.
-
-  \begin{itemize}
-    \item \texttt{setUp()} is used for setting things up before \textbf{each} test
-    \item \texttt{tearDown()} for tearing things down after \textbf{each} test
-  \end{itemize}
+% % \begin{itemize}
+% %     \item \texttt{setUp()} is used for setting things up before \textbf{each} test
+% %     \item \texttt{tearDown()} for tearing things down after \textbf{each} test
+% % \end{itemize}
   
-  Suites can contain multiple test cases: \texttt{addTest(Test test)}
+% % Suites can contain multiple test cases: \texttt{addTest(Test test)}
 
-\begin{lstlisting}[language=JAVA,basicstyle=\scriptsize]
-  public static void main (String [] args){
-    junit.textui.TestRunner.run (suite ());
-  }
-  // TestSuite implements Test interface
-  public static Test suite() {
-    TestSuite suite = new TestSuite("AllTests");
-    suite.addTest(new TestSuite(FloatTest.class));
-    suite.addTest(new TestSuite(BoolTest.class));
-    return suite;
-  }
-  public void testAllTests () throws Exception{
-      assertTrue (suite != null);
-  }
-  \end{lstlisting}
+% % \begin{lstlisting}[language=JAVA,basicstyle=\scriptsize]
+% %   public static void main (String [] args){
+% %     junit.textui.TestRunner.run (suite ());
+% %   }
+% %   // TestSuite implements Test interface
+% %   public static Test suite() {
+% %     TestSuite suite = new TestSuite("AllTests");
+% %     suite.addTest(new TestSuite(FloatTest.class));
+% %     suite.addTest(new TestSuite(BoolTest.class));
+% %     return suite;
+% %   }
+% %   public void testAllTests () throws Exception{
+% %       assertTrue (suite != null);
+% %   }
+% % \end{lstlisting}
 
-\end{frame}
+% % \end{frame}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{JUnit 4}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -491,19 +506,17 @@ public class MinimalTest extends TestCase {
 JUnit 4 took advantage of imports and annotations included in JDK 5+.
 \begin{itemize}
   \item Static imports. It allow us to make use of static variables and methods from other classes without qualifying them (name the class).
-
   \item Annotations 
-    \begin{itemize}
+  \begin{itemize}
     \item Annotations are metadata that provide information to the compiler (or other tools)
     \item JUnit 4 works with annotations instead of extending classes. There is no need for naming conventions as in previous versions but those naming patterns are still used. 
-    \end{itemize}
-
-  \item JUnit4 also improved the functionality with annotations>
-    \begin{itemize}
+  \end{itemize}
+  \item JUnit4 also improved the functionality with annotations
+  \begin{itemize}
     \item Timeouts: \texttt{@Test(timeout=1000)}...
-    \item Testing exceptions: \texttt{@Test(expected=DBConnectException.class)} ...
+    \item Testing exceptions: \texttt{@Test(expected=DBConnectException.class)} 
     \item Ignore a test: \texttt{@Ignore("Ignore the following test for now")}
-    \end{itemize}
+  \end{itemize}
 \end{itemize}
 
 \end{frame}
@@ -511,7 +524,7 @@ JUnit 4 took advantage of imports and annotations included in JDK 5+.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Junit 4 Annotations}
+\begin{frame}{Junit 4 -- Annotations}
 
 \begin{itemize}
   \item \texttt{@Before} A method marked with \texttt{@Before} will be run before every test method. It is used to prepare the tests environment.
@@ -523,10 +536,13 @@ JUnit 4 took advantage of imports and annotations included in JDK 5+.
   \end{itemize}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{JUnit 5}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Junit 5 - Annotations}
+\begin{frame}{Junit 5 -- Annotations}
 
   \begin{itemize}
     \item \texttt{@BeforeEach} A method marked with \texttt{@BeforeEach} will be run before every test method. It is used to prepare the tests environment.
@@ -537,40 +553,11 @@ JUnit 4 took advantage of imports and annotations included in JDK 5+.
     \item \texttt{@BeforeAll} Run only once before all test methods
     \end{itemize}
   \end{frame}
-  
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Junit 5}
-
-  Assert methods are used as a comparison between an expected value and an actual value to determine the success or failure of a test
-    
-        \begin{itemize}
-          \item \texttt{assertCONDITION(...)}
-          \item \texttt{assertCONDITION(String message,...)}  the message is displayed when the assert method fails
-        \end{itemize}
-    
-  For example:
-        \begin{itemize}
-          \item \texttt{assertEquals(<> expected, <> actual)}
-          \item \texttt{assertSame(...)} 
-          \item \texttt{assertFalse(boolean condition)}
-          \item \texttt{assertTrue(boolean condition)}
-          \item \texttt{assertNull(...)}
-          \item \texttt{assertNotNull(...)}
-          \item Etc.
-        \end{itemize}
-  
-        Further info in the API: \texttt{org.junit.jupiter.api.Assertions}\\
-        \texttt{\url{https://junit.org/junit5/}}
-    
-    \end{frame}
-  
-
+ 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Junit 5 Assert methods}
+\begin{frame}{Junit 5 -- Assert methods}
 
 Assert methods are used as a comparison between an expected value and an actual value to determine the success or failure of a test
   
@@ -590,35 +577,48 @@ For example:
         \item Etc.
       \end{itemize}
 
-      Further info in the API: \texttt{org.junit.jupiter.api.Assertions}\\
-      \texttt{\url{https://junit.org/junit5/}}
+Further info in the API: \texttt{org.junit.jupiter.api.Assertions}
+
+\url{https://junit.org/junit5/}
   
-  \end{frame}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Junit 5 - New functionality}
+\begin{frame}{Junit 5 -- New functionality I}
 
-  Custom display names - \texttt{@DisplayName} annotation allows us to provide custom display names for test classes and methods which can have spaces, special characters, and emojis.
+\begin{itemize}
+  \item Custom display names - \texttt{@DisplayName} annotation allows us to provide custom display names for test classes and methods which can have spaces, special characters, and emojis.
 
-  Nested test classes - non-static nested classes (i.e. inner classes) can serve as @Nested test classes for logical grouping of test cases. 
+  \item Nested test classes - non-static nested classes (i.e. inner classes) can serve as @Nested test classes for logical grouping of test cases. 
 
-  Tagging and filtering - It is possible yo tag test classes and test methods with your  identifiers using the \texttt{@Tag} annotation. 
+  \item Tagging and filtering - It is possible yo tag test classes and test methods with your  identifiers using the \texttt{@Tag} annotation. 
 
-  Meta-annotations and composed annotations - This allows us to create a custom composed annotation that will inherit the semantics of its meta-annotations.
+  \item Meta-annotations and composed annotations - This allows us to create a custom composed annotation that will inherit the semantics of its meta-annotations.
 
-  Dynamic tests - JUnit Jupiter introduces a of dynamic tests which are generated at runtime by a factory method annotated with \texttt{@TestFactory} annotation
-
-  Repeated tests - Annotating the test method with \texttt{@RepeatedTest} annotation and specifying the number of repetitions.
-
-  Parameterized tests - Run a test multiple times with different arguments by annotating the test method with \texttt{@ParameterizedTest} annotation 
-  % and declaring at least one source to provide the arguments. 
+\end{itemize}
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{First Example}
+\begin{frame}{Junit 5 -- New functionality II}
+
+\begin{itemize}
+  \item Dynamic tests - JUnit Jupiter introduces a of dynamic tests which are generated at runtime by a factory method annotated with \texttt{@TestFactory} annotation
+
+  \item Repeated tests - Annotating the test method with \texttt{@RepeatedTest} annotation and specifying the number of repetitions.
+
+  \item Parameterized tests - Run a test multiple times with different arguments by annotating the test method with \texttt{@ParameterizedTest} annotation 
+  % and declaring at least one source to provide the arguments. 
+
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{First Example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -647,7 +647,7 @@ And the operations are as follows:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\begin{frame}[fragile]{\texttt{ComplexNumber} class -- Class Under Test}
+\begin{frame}[fragile]{\texttt{ComplexNumber} class -- CUT I}
 
 
 \begin{lstlisting}[language=Java,basicstyle=\scriptsize]
@@ -676,9 +676,9 @@ public ComplexNumber add(ComplexNumber c) {
 
 \end{frame}
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}[fragile]{\texttt{ComplexNumber} class -- Class Under Test (CUT) III}
+\begin{frame}[fragile]{\texttt{ComplexNumber} class -- CUT II}
 
 \begin{lstlisting}[language=Java,basicstyle=\scriptsize]
 public ComplexNumber multiply(ComplexNumber c) {
@@ -701,109 +701,111 @@ public boolean equals(Object anObject) {
 \end{frame}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \subsection{JUnit in Eclipse}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \begin{frame}{MoreUnit}
-%
-%MoreUnit makes unit testing in Eclipse a bit easier.
-%  
-%To install MoreUnit in Eclipse, select Help \textgreater Eclipse Marketplace
-%  
-%  \begin{center}
-%    \includegraphics[width=100pt]{./figs/market}
-%  \end{center}
-%  
-%  \texttt{Next} and then \texttt{Finish} (restart Eclipse)
-%
-%    More about MoreUnit: \texttt{https://moreunit.github.io/MoreUnit-Eclipse/ }
-%\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\begin{frame}
-%
-%Configure MoreUnit Source folder
-%
-%  Import the JUnit library and create a source folder for the tests in each project which you want to have unit tests. Click \texttt{Window} \textgreater \texttt{Preferences}:
-%
-%    \begin{center}
-%    \includegraphics[width=205pt]{./figs/config}                                            
-%    \end{center}
-%      
-%    Set \texttt{Test} as Source Folder.
-%
-%\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\begin{frame}
-%    Starting with MoreUnit. With a new Java Project:
-%    \begin{enumerate}
-%      \item Open the project properties
-%      \item Click on \emph{Java Build Path}
-%      \item Select the \emph{Libraries} tab
-%      \item Click the \emph{Add Library} button
-%      \item Choose JUnit
-%    \end{enumerate}
-%\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\begin{frame}
-%     In your Java Project, create a new source folder called 'test', in your folder right click and select \texttt{New} \textgreater \texttt{Source Folder}.
-%
-%    \begin{center}
-%      \includegraphics[width=150pt]{./figs/folder}
-%    \end{center}
-%
-%\end{frame}
+% % \subsection{JUnit in Eclipse}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\begin{frame}
+% % \begin{frame}{MoreUnit}
+% %
+% %MoreUnit makes unit testing in Eclipse a bit easier.
+% %  
+% %To install MoreUnit in Eclipse, select Help \textgreater Eclipse Marketplace
+% %  
+% %  \begin{center}
+% %    \includegraphics[width=100pt]{./figs/market}
+% %  \end{center}
+% %  
+% %  \texttt{Next} and then \texttt{Finish} (restart Eclipse)
+% %
+% %    More about MoreUnit: \texttt{https://moreunit.github.io/MoreUnit-Eclipse/ }
+% %\end{frame}
 
-%In the class with the code you have to do right click and select MoreUnit menu \textgreater Jump to test/Member under test.
 
-%\begin{center}
-%  \includegraphics[width=150pt]{./figs/Unitmenu}
-%\end{center}
-%
-%\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\begin{frame}[fragile]{Fixtures}
-%
-%Now you can view your test class in the test source folder. Extract from test class:
-%
-%\begin{center}
-%\begin{lstlisting}[language=Java,basicstyle=\scriptsize]
-%public class ComplexNumberTest {
-%  @BeforeClass
-%  public static void setUpBeforeClass() throws Exception {}
-%
-%  @AfterClass
-%  public static void tearDownAfterClass() throws Exception {}
-%
-%  @Before
-%  public void setUp() throws Exception {}
-%
-%  @After
-%  public void tearDown() throws Exception {}
-%}
-%\end{lstlisting}
-%\end{center}
-%
-%\end{frame}
-
-% 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %\begin{frame}
+% %
+% %Configure MoreUnit Source folder
+% %
+% %  Import the JUnit library and create a source folder for the tests in each project which you want to have unit tests. Click \texttt{Window} \textgreater \texttt{Preferences}:
+% %
+% %    \begin{center}
+% %    \includegraphics[width=205pt]{./figs/config}                                            
+% %    \end{center}
+% %      
+% %    Set \texttt{Test} as Source Folder.
+% %
+% %\end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %\begin{frame}
+% %    Starting with MoreUnit. With a new Java Project:
+% %    \begin{enumerate}
+% %      \item Open the project properties
+% %      \item Click on \emph{Java Build Path}
+% %      \item Select the \emph{Libraries} tab
+% %      \item Click the \emph{Add Library} button
+% %      \item Choose JUnit
+% %    \end{enumerate}
+% %\end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %\begin{frame}
+% %     In your Java Project, create a new source folder called 'test', in your folder right click and select \texttt{New} \textgreater \texttt{Source Folder}.
+% %
+% %    \begin{center}
+% %      \includegraphics[width=150pt]{./figs/folder}
+% %    \end{center}
+% %
+% %\end{frame}
+
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %\begin{frame}
+
+% %In the class with the code you have to do right click and select MoreUnit menu \textgreater Jump to test/Member under test.
+
+% %\begin{center}
+% %  \includegraphics[width=150pt]{./figs/Unitmenu}
+% %\end{center}
+% %
+% %\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Fixtures}
+
+Now you can view your test class in the test source folder. Extract from test class:
+
+\begin{center}
+\begin{lstlisting}[language=Java,basicstyle=\scriptsize]
+public class ComplexNumberTest {
+  @BeforeClass
+  public static void setUpBeforeClass()
+
+  @AfterClass
+  public static void tearDownAfterClass()
+
+  @Before
+  public void setUp()
+
+  @After
+  public void tearDown()
+  
+  ...
+}
+\end{lstlisting}
+\end{center}
+
+\end{frame}
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\begin{frame}[fragile]
 
@@ -924,16 +926,41 @@ We usually run the test with IDEs and we will see something similar to the follo
 
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Advanced Topics}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Testing Suites}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]{Suites}
-  To Do
+
+Run different sets of unit tests
+
+Using \texttt{@Suite} annotation
+
+\begin{lstlisting}[language=Java,basicstyle=\scriptsize]  
+import org.junit.platform.suite.api.IncludeTags;
+import org.junit.platform.suite.api.SelectPackages;
+import org.junit.platform.suite.api.Suite;
+
+@SelectPackages({"uah.packageA"
+                ,"uah.packageB"})
+
+@IncludeTags("production")
+@Suite
+public class JUnit5TestSuiteExample {
+}
+\end{lstlisting}
+
 \end{frame}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -969,10 +996,8 @@ This is tested with:
 \end{frame}
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \subsection{Testing Private Methods}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -990,6 +1015,7 @@ In general private methods are not tested directly (they are tested indirectly t
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \begin{frame}[fragile]{Testing Private Methods - Example}
 
@@ -1079,7 +1105,7 @@ public void checkCoefficientsAreOk() throws Exception {
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Testing with Mock Objects}
 
@@ -1134,40 +1160,18 @@ Process to create mock objects
 
 ''Mockito is a mocking framework that tastes really good. It lets you write beautiful tests with clean \& simple API. Mockito doesn't give you hangover because the tests are very readable and they produce clean verification errors.''
 
-Web: \texttt{https://site.mockito.org/}
-\end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\url{https://site.mockito.org/}
 
-\begin{frame}[fragile]
-With Mockito we can use mock objects in unit tests to test classes simulating their behaviour with mock objects.
-
-Some internet examples:
-
-\begin{lstlisting}[language=Java,basicstyle=\tiny]
-public class MyServiceTest extends UnitilsJUnit4 {
-    private Mock<MyService> myServiceMock;
-}
-
-@Before
-public void initialize() {
-    myServiceMock = new MockObject<MyService>(MyService.class, this);
-}
-\end{lstlisting}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
 With mock objects and Mockito we can do:
 
-  \begin{enumerate}
+\begin{enumerate}
   \item Test the behaviour
   \item Force the behaviour
   \item Use matchers in arguments passing
   \item Call order verification
   \item Etc.
-  \end{enumerate}
+\end{enumerate}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1175,455 +1179,25 @@ With mock objects and Mockito we can do:
 
 \begin{frame}{Installing Mockito}
 
-Download Mockito:
-
-\texttt{\url{https://site.mockito.org/}}
-
-and include the \texttt{.jar} file into your project.
-
-~
-
-Or use Maven or Gradle to handle the dependencies.
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \begin{frame}
-
-% The process is similar as in JUnit:
-% \begin{enumerate}
-%  \item Open the project properties
-%  \item Click on Java Build Path
-%  \item Select the Libraries tab
-%  \item Click the Add External \texttt{.jar} button
-%  \item Choose your mockito \texttt{.jar} library.
-% \end{enumerate}
-
-% \end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]
-
-\begin{lstlisting}[language=Java,basicstyle=\tiny]
-public class QuadraticEquation {
-
-    /* quadratic coefficient */
-    private double a =  0;
-    /* linear coefficient */
-    private double b = 0;
-    /* free term */
-    private double c = 0;
-
-    /**
-     * Creates the quadratic equation from its parameters.
-     */
-    public QuadraticEquation(double a, double b, double c){
-        this.a = a; this.b = b; this.c = c;
-    }
-
-    /**
-     * Helper method to check the coefficients are ok.
-     */
-    protected boolean checkCoefficientsAreOk() throws Exception{
-        if (a == 0) throw new Exception();
-        return true;
-    }
-
-    /**
-     *  Computes the discriminant of the equation.
-     */
-    private double computeDiscriminant(){
-        return b*b - 4*a*c;
-    }
-
-\end{lstlisting}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]
-
-
-\begin{lstlisting}[language=Java,basicstyle=\tiny]
-  /**
-     * Get solutions of the equation.
-     * The method returns:
-     * (a) Either two real or two imaginary solutions
-     * in positions 0 and 1 of the array
-     * (b) A single solution in position 0 of the array with the other
-     * set to null.
-     */
-    public ComplexNumber[] getSolutions(){
-        // This check is defensive programming, as the contract of
-        // the class makes clear a should not be zero.
-    	try
-    	{
-    	if (!checkCoefficientsAreOk())
-            return null;
-    	}catch(Exception e)
-    	{
-    		System.out.println(e.toString());
-    	}
-        Double disc = computeDiscriminant();
-        ComplexNumber[] result = new ComplexNumber[2];
-        if (disc == 0){
-            Double sol = - (b/(2*a));
-            result[0] = new ComplexNumber(sol, 0.0);
-        }else if (disc > 0){
-            Double sol1 = (-b + Math.sqrt(disc))/(2*a);
-            result[0] = new ComplexNumber(sol1, 0.0);
-
-\end{lstlisting}
-\end{frame}
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]
-
-\begin{lstlisting}[language=JAVA,basicstyle=\tiny]
-
-            result[0] = new ComplexNumber(sol1, 0.0);
-            Double sol2 = (-b - Math.sqrt(disc))/(2*a);
-            result[1] = new ComplexNumber(sol2, 0.0);
-        }
-        else{
-            Double realPart = -b/(2*a);
-            Double imagPart = disc/(2*a);
-            result[0] = new ComplexNumber(realPart, imagPart);
-            result[1] = new ComplexNumber(realPart, -imagPart);
-        }
-        return result;
-    }
-
-   }
-\end{lstlisting}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \begin{frame}
-
-% First step is to create JUnit test classes as usual.
-
-% Then create the test methods.
-
-% \end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]
-\begin{lstlisting}[language=JAVA,basicstyle=\tiny]
-import static org.junit.Assert.*;
-import java.util.Arrays;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-//@RunWith(MockitoJUnitRunner.class)
-public class QuadraticEquationTest
-{
-	 private QuadraticEquation qe;
-	 private QuadraticEquation qe1;
-	
-	@Before
-	public void setUp() throws Exception
-	{
-		qe = new QuadraticEquation(1.0, 5.0, 0.0);
-		qe1 = new QuadraticEquation(0.0, 5.0, 0.0);
-	}
-
-	@After
-	public void tearDown() throws Exception
-	{
-		qe = new QuadraticEquation(0.0, 0.0, 0.0);
-	}
-\end{lstlisting}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]
-\begin{lstlisting}[language=JAVA,basicstyle=\tiny]
-	@Test
-	public void checkCoefficientsAreOk() throws Exception {
-		System.out.println("Coeficients");
-		boolean expResult = true;
-		boolean result = qe.checkCoefficientsAreOk();
-		assertEquals(expResult, result);
-	}
-
-  //Testing exceptions the first coeficient must not be 0
-	@Test(expected = Exception.class) 
-	public void checkCoefficientsAreOk1() throws Exception {
-		System.out.println("Coeficients");
-		boolean expResult = true;
-		boolean result = qe1.checkCoefficientsAreOk();
-		assertEquals(expResult, result);
-	}
-	
-	@Test
-	public void getSolutions() throws Exception {
-		System.out.println("Solutions");
-		ComplexNumber[] expected = { new ComplexNumber(0.0, 0.0),
-				new ComplexNumber(-5.0, 0.0) };
-		ComplexNumber[] result = qe.getSolutions();
-		System.out.println(Arrays.equals(result, expected));
-		assertArrayEquals(expected, result);
-	}}
-\end{lstlisting}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-Now we going to do the same with the \texttt{ComplexNumbers}.
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]{Example}
-\begin{lstlisting}[language=JAVA,basicstyle=\tiny]
-class ComplexNumber {
-    private Double realPart;
-    private Double imagPart;
-
-    /**
-     * Construct a new ComplexNumber that has the value 0 + 0i.
-     */
-    public ComplexNumber() {
-    }
-
-    /**
-     * Construct a new ComplexNumber with the value realPart + 0i.
-     *
-     * @param realPart initial value for the real part
-     */
-    public ComplexNumber(Double realPart) {
-	      this.realPart = realPart;
-    }
-
-    /**
-     * Construct a new ComplexNumber
-     *
-     * @param realPart initial value for the real part
-     * @param imagPart initial value for the imaginary part
-     */
-    public ComplexNumber(Double realPart, Double imagPart) {
-	    this.realPart = realPart;
-	    this.imagPart = imagPart;
-    }
-\end{lstlisting}
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]
-\begin{lstlisting}[language=JAVA,basicstyle=\tiny]
-    /**
-     * Test whether the this ComplexNumber and the ComplexNumber theNum
-     * are equal.  Two ComplexNumbers are equal if their
-     * real parts are equal and their imaginary parts are equal.
-     *
-     * @param theNum the ComplexNumber to which this ComplexNumber is
-     *               to be compared for equality.
-     * @return true if the real and imaginary parts of this
-     *         ComplexNumber are equal to the real and imaginary
-     *         parts of theNum, and false otherwise.
-     */
-    public boolean equals(ComplexNumber theNum) {
-	    return ((realPart == theNum.realPart) &&
-		          (imagPart == theNum.imagPart));
-    }
-\end{lstlisting}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]
-\begin{lstlisting}[language=Java,basicstyle=\tiny]
-  /**
-     * Return a reference to a new ComplexNumber with value equal
-     * to the sum of this ComplexNumber and the ComplexNumber theNum.
-     *
-     * @param theNum a ComplexNumber to be added to this ComplexNumber.
-     * @return a reference to a new ComplexNumber equal to the sum of this
-     *         ComplexNumber and theNum.
-     */
-    public ComplexNumber add(ComplexNumber theNum) {
-	    return new ComplexNumber(realPart + theNum.realPart,
-				                       imagPart + theNum.imagPart);
-    }
-
-    /**
-     * Return a reference to a new ComplexNumber with value equal
-     * to the difference between this ComplexNumber and the
-     * ComplexNumber theNum.
-     *
-     * @param theNum a ComplexNumber to be subtracted from this ComplexNumber.
-     * @return a reference to a new ComplexNumber equal to the difference
-     *         between this ComplexNumber and theNum.
-     */
-    public ComplexNumber subtract(ComplexNumber theNum) {
-	    return new ComplexNumber(realPart - theNum.realPart,
-				                       imagPart - theNum.imagPart);
-    }
-
-\end{lstlisting}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\begin{frame}[fragile]
-\begin{lstlisting}[language=JAVA,basicstyle=\tiny]
-    /**
-     * Get the real part of this ComplexNumber.
-     *
-     * @return the real part of this ComplexNumber.
-     */
-    public Double getRealPart() {
-	     return realPart;
-    }
-
-    /**
-     * Get the imaginary part of this ComplexNumber.
-     *
-     * @return the imaginary part of this ComplexNumber.
-     */
-    public Double getImaginaryPart() {
-	    return imagPart;
-    }
-
-    /**
-     * Convert this ComplexNumber into a String representation.
-     *
-     * @return a String representation of this ComplexNumber.
-     */
-    @Override
-    public String toString() {
-	    // If the imagPart is >= 0 print out a + b i
-	    if (imagPart >= 0) {
-	      return realPart + " + " + imagPart + " i";
-    	}
-	    // If the imagPart is < 0 print out a - b i
-	    else {
-	      return realPart + " - " + (-imagPart) + " i";
-	    }
-    }
-}
-\end{lstlisting}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]
-\begin{lstlisting}[language=JAVA,basicstyle=\tiny]
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-import org.junit.Before;
-import org.junit.Test;
-
-public class ComplexNumberTest{
-	private ComplexNumber cZero ;
-	private ComplexNumber cOneZero ;
-	private ComplexNumber cZeroOne ;
-	private ComplexNumber cOneOne ;
-	
-	@Before
-	public void setUp() throws Exception {
-		cZero = new ComplexNumber(0.0,0.0) ;
-		cOneZero = new ComplexNumber(1.0,0.0) ;
-		cZeroOne = new ComplexNumber(0.0,1.0) ;
-		cOneOne = new ComplexNumber (1.0,1.0) ;
-	}
-\end{lstlisting}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]
-
-\begin{lstlisting}[language=Java,basicstyle=\tiny]
-	@Test
-	public void equals() throws Exception {
-		System.out.println("equals");
-		boolean expResult = true ;
-		boolean result = cOneZero.equals(cOneZero);
-		assertEquals(expResult,result);
-	}
-
-	@Test
-	public void add() throws Exception {
-		System.out.println("add");
-		ComplexNumber result = cZeroOne.add(cOneZero);
-		assertEquals(cOneOne.toString(),result.toString());
-	}
-
-	@Test
-	public void subtract() throws Exception	{
-		System.out.println("sub");
-		ComplexNumber result = cOneZero.subtract(cOneZero);
-		assertEquals(cZero.toString(),result.toString());
-	}
-\end{lstlisting}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]
-
-\begin{lstlisting}[language=JAVA,basicstyle=\scriptsize]
-  @Test public void getRealPart() throws Exception {
-    System.out.println("getReal") ;
-    double expResult = 0.0 ;
-    double result = cZeroOne.getRealPart( ) ;
-    assertEquals(expResult,result,0.1) ;
-  }
-  @Test public void getImaginaryPart() throws Exception {
-    System.out.println("getImg") ;
-    double expResult = 1.0;
-    double result = cZeroOne.getImaginaryPart();
-    assertEquals(expResult,result,0.1) ;
-  }
-  @Test public void getImaginaryPart2() throws Exception {
-    System.out.println( "getImg" ) ;
-    ComplexNumber cNumber = mock(ComplexNumber.class);
-    when(cNumber.getImaginaryPart()).thenReturn(1.0);
-    double expResult = 1.0;
-    double result = cZeroOne.getImaginaryPart();
-    assertEquals(expResult,result,0.1) ;
-  }
-\end{lstlisting}
+Mockito is usually used via Maven or Gradle to handle the dependencies.
+
+%\begin{lstlisting}[language=XML,basicstyle=\tiny]
+%   <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+%   <dependency>
+%       <groupId>org.mockito</groupId>
+%       <artifactId>mockito-core</artifactId>
+%       <version>4.1.0</version>
+%       <scope>test</scope>
+%   </dependency>
+%\end{lstlisting}
+
+\url{https://site.mockito.org/}
+
+Manually, it is always possible to include the \texttt{.jar} file into your project.
 
 \end{frame}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}[fragile]
-
-In this example we are using a Mock to emulate the behaviour of a \texttt{ComplexNumber} type object.
-
-The \emph{mock} will return  \texttt{1.0} when the \texttt{getImaginaryPart()} method is called.
-
-\begin{lstlisting}[language=JAVA,basicstyle=\scriptsize]
-@Test
-public void getImaginaryPart2() throws Exception {
-  System.out.println("getImg");
-  ComplexNumber cNumber = mock(ComplexNumber.class); \\Creating the Mock.
-  when(cNumber.getImaginaryPart()).thenReturn(1.0); \\Coding the Mock behaviour.
-  double expResult = 1.0;
-  double result = cZeroOne.getImaginaryPart();
-  assertEquals(expResult,result,0.1) ;
-}
-\end{lstlisting}
-
-\end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1647,3 +1221,1259 @@ It should be part of the software development life cycle with:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Example:
+
+
+
+% \begin{frame}[fragile]
+
+% \begin{lstlisting}[language=Java,basicstyle=\tiny]
+% public class QuadraticEquation {
+
+%     /* quadratic coefficient */
+%     private double a =  0;
+%     /* linear coefficient */
+%     private double b = 0;
+%     /* free term */
+%     private double c = 0;
+
+%     /**
+%      * Creates the quadratic equation from its parameters.
+%      */
+%     public QuadraticEquation(double a, double b, double c){
+%         this.a = a; this.b = b; this.c = c;
+%     }
+
+%     /**
+%      * Helper method to check the coefficients are ok.
+%      */
+%     protected boolean checkCoefficientsAreOk() throws Exception{
+%         if (a == 0) throw new Exception();
+%         return true;
+%     }
+
+%     /**
+%      *  Computes the discriminant of the equation.
+%      */
+%     private double computeDiscriminant(){
+%         return b*b - 4*a*c;
+%     }
+
+% \end{lstlisting}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]
+
+
+% \begin{lstlisting}[language=Java,basicstyle=\tiny]
+%   /**
+%      * Get solutions of the equation.
+%      * The method returns:
+%      * (a) Either two real or two imaginary solutions
+%      * in positions 0 and 1 of the array
+%      * (b) A single solution in position 0 of the array with the other
+%      * set to null.
+%      */
+%     public ComplexNumber[] getSolutions(){
+%         // This check is defensive programming, as the contract of
+%         // the class makes clear a should not be zero.
+%     	try
+%     	{
+%     	if (!checkCoefficientsAreOk())
+%             return null;
+%     	}catch(Exception e)
+%     	{
+%     		System.out.println(e.toString());
+%     	}
+%         Double disc = computeDiscriminant();
+%         ComplexNumber[] result = new ComplexNumber[2];
+%         if (disc == 0){
+%             Double sol = - (b/(2*a));
+%             result[0] = new ComplexNumber(sol, 0.0);
+%         }else if (disc > 0){
+%             Double sol1 = (-b + Math.sqrt(disc))/(2*a);
+%             result[0] = new ComplexNumber(sol1, 0.0);
+
+% \end{lstlisting}
+% \end{frame}
+
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]
+
+% \begin{lstlisting}[language=JAVA,basicstyle=\tiny]
+
+%             result[0] = new ComplexNumber(sol1, 0.0);
+%             Double sol2 = (-b - Math.sqrt(disc))/(2*a);
+%             result[1] = new ComplexNumber(sol2, 0.0);
+%         }
+%         else{
+%             Double realPart = -b/(2*a);
+%             Double imagPart = disc/(2*a);
+%             result[0] = new ComplexNumber(realPart, imagPart);
+%             result[1] = new ComplexNumber(realPart, -imagPart);
+%         }
+%         return result;
+%     }
+
+%    }
+% \end{lstlisting}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% % \begin{frame}
+
+% % First step is to create JUnit test classes as usual.
+
+% % Then create the test methods.
+
+% % \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]
+% \begin{lstlisting}[language=JAVA,basicstyle=\tiny]
+% import static org.junit.Assert.*;
+% import java.util.Arrays;
+% import org.junit.After;
+% import org.junit.Before;
+% import org.junit.Test;
+
+% //@RunWith(MockitoJUnitRunner.class)
+% public class QuadraticEquationTest
+% {
+% 	 private QuadraticEquation qe;
+% 	 private QuadraticEquation qe1;
+	
+% 	@Before
+% 	public void setUp() throws Exception
+% 	{
+% 		qe = new QuadraticEquation(1.0, 5.0, 0.0);
+% 		qe1 = new QuadraticEquation(0.0, 5.0, 0.0);
+% 	}
+
+% 	@After
+% 	public void tearDown() throws Exception
+% 	{
+% 		qe = new QuadraticEquation(0.0, 0.0, 0.0);
+% 	}
+% \end{lstlisting}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]
+% \begin{lstlisting}[language=JAVA,basicstyle=\tiny]
+% 	@Test
+% 	public void checkCoefficientsAreOk() throws Exception {
+% 		System.out.println("Coeficients");
+% 		boolean expResult = true;
+% 		boolean result = qe.checkCoefficientsAreOk();
+% 		assertEquals(expResult, result);
+% 	}
+
+%   //Testing exceptions the first coeficient must not be 0
+% 	@Test(expected = Exception.class) 
+% 	public void checkCoefficientsAreOk1() throws Exception {
+% 		System.out.println("Coeficients");
+% 		boolean expResult = true;
+% 		boolean result = qe1.checkCoefficientsAreOk();
+% 		assertEquals(expResult, result);
+% 	}
+	
+% 	@Test
+% 	public void getSolutions() throws Exception {
+% 		System.out.println("Solutions");
+% 		ComplexNumber[] expected = { new ComplexNumber(0.0, 0.0),
+% 				new ComplexNumber(-5.0, 0.0) };
+% 		ComplexNumber[] result = qe.getSolutions();
+% 		System.out.println(Arrays.equals(result, expected));
+% 		assertArrayEquals(expected, result);
+% 	}}
+% \end{lstlisting}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}
+% Now we going to do the same with the \texttt{ComplexNumbers}.
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]{Example}
+% \begin{lstlisting}[language=JAVA,basicstyle=\tiny]
+% class ComplexNumber {
+%     private Double realPart;
+%     private Double imagPart;
+
+%     /**
+%      * Construct a new ComplexNumber that has the value 0 + 0i.
+%      */
+%     public ComplexNumber() {
+%     }
+
+%     /**
+%      * Construct a new ComplexNumber with the value realPart + 0i.
+%      *
+%      * @param realPart initial value for the real part
+%      */
+%     public ComplexNumber(Double realPart) {
+% 	      this.realPart = realPart;
+%     }
+
+%     /**
+%      * Construct a new ComplexNumber
+%      *
+%      * @param realPart initial value for the real part
+%      * @param imagPart initial value for the imaginary part
+%      */
+%     public ComplexNumber(Double realPart, Double imagPart) {
+% 	    this.realPart = realPart;
+% 	    this.imagPart = imagPart;
+%     }
+% \end{lstlisting}
+% \end{frame}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]
+% \begin{lstlisting}[language=JAVA,basicstyle=\tiny]
+%     /**
+%      * Test whether the this ComplexNumber and the ComplexNumber theNum
+%      * are equal.  Two ComplexNumbers are equal if their
+%      * real parts are equal and their imaginary parts are equal.
+%      *
+%      * @param theNum the ComplexNumber to which this ComplexNumber is
+%      *               to be compared for equality.
+%      * @return true if the real and imaginary parts of this
+%      *         ComplexNumber are equal to the real and imaginary
+%      *         parts of theNum, and false otherwise.
+%      */
+%     public boolean equals(ComplexNumber theNum) {
+% 	    return ((realPart == theNum.realPart) &&
+% 		          (imagPart == theNum.imagPart));
+%     }
+% \end{lstlisting}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]
+% \begin{lstlisting}[language=Java,basicstyle=\tiny]
+%   /**
+%      * Return a reference to a new ComplexNumber with value equal
+%      * to the sum of this ComplexNumber and the ComplexNumber theNum.
+%      *
+%      * @param theNum a ComplexNumber to be added to this ComplexNumber.
+%      * @return a reference to a new ComplexNumber equal to the sum of this
+%      *         ComplexNumber and theNum.
+%      */
+%     public ComplexNumber add(ComplexNumber theNum) {
+% 	    return new ComplexNumber(realPart + theNum.realPart,
+% 				                       imagPart + theNum.imagPart);
+%     }
+
+%     /**
+%      * Return a reference to a new ComplexNumber with value equal
+%      * to the difference between this ComplexNumber and the
+%      * ComplexNumber theNum.
+%      *
+%      * @param theNum a ComplexNumber to be subtracted from this ComplexNumber.
+%      * @return a reference to a new ComplexNumber equal to the difference
+%      *         between this ComplexNumber and theNum.
+%      */
+%     public ComplexNumber subtract(ComplexNumber theNum) {
+% 	    return new ComplexNumber(realPart - theNum.realPart,
+% 				                       imagPart - theNum.imagPart);
+%     }
+
+% \end{lstlisting}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% \begin{frame}[fragile]
+% \begin{lstlisting}[language=JAVA,basicstyle=\tiny]
+%     /**
+%      * Get the real part of this ComplexNumber.
+%      *
+%      * @return the real part of this ComplexNumber.
+%      */
+%     public Double getRealPart() {
+% 	     return realPart;
+%     }
+
+%     /**
+%      * Get the imaginary part of this ComplexNumber.
+%      *
+%      * @return the imaginary part of this ComplexNumber.
+%      */
+%     public Double getImaginaryPart() {
+% 	    return imagPart;
+%     }
+
+%     /**
+%      * Convert this ComplexNumber into a String representation.
+%      *
+%      * @return a String representation of this ComplexNumber.
+%      */
+%     @Override
+%     public String toString() {
+% 	    // If the imagPart is >= 0 print out a + b i
+% 	    if (imagPart >= 0) {
+% 	      return realPart + " + " + imagPart + " i";
+%     	}
+% 	    // If the imagPart is < 0 print out a - b i
+% 	    else {
+% 	      return realPart + " - " + (-imagPart) + " i";
+% 	    }
+%     }
+% }
+% \end{lstlisting}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]
+% \begin{lstlisting}[language=JAVA,basicstyle=\tiny]
+% import static org.junit.Assert.*;
+% import static org.mockito.Mockito.*;
+% import org.junit.Before;
+% import org.junit.Test;
+
+% public class ComplexNumberTest{
+% 	private ComplexNumber cZero ;
+% 	private ComplexNumber cOneZero ;
+% 	private ComplexNumber cZeroOne ;
+% 	private ComplexNumber cOneOne ;
+	
+% 	@Before
+% 	public void setUp() throws Exception {
+% 		cZero = new ComplexNumber(0.0,0.0) ;
+% 		cOneZero = new ComplexNumber(1.0,0.0) ;
+% 		cZeroOne = new ComplexNumber(0.0,1.0) ;
+% 		cOneOne = new ComplexNumber (1.0,1.0) ;
+% 	}
+% \end{lstlisting}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]
+
+% \begin{lstlisting}[language=Java,basicstyle=\tiny]
+% 	@Test
+% 	public void equals() throws Exception {
+% 		System.out.println("equals");
+% 		boolean expResult = true ;
+% 		boolean result = cOneZero.equals(cOneZero);
+% 		assertEquals(expResult,result);
+% 	}
+
+% 	@Test
+% 	public void add() throws Exception {
+% 		System.out.println("add");
+% 		ComplexNumber result = cZeroOne.add(cOneZero);
+% 		assertEquals(cOneOne.toString(),result.toString());
+% 	}
+
+% 	@Test
+% 	public void subtract() throws Exception	{
+% 		System.out.println("sub");
+% 		ComplexNumber result = cOneZero.subtract(cOneZero);
+% 		assertEquals(cZero.toString(),result.toString());
+% 	}
+% \end{lstlisting}
+
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]
+
+% \begin{lstlisting}[language=JAVA,basicstyle=\scriptsize]
+%   @Test public void getRealPart() throws Exception {
+%     System.out.println("getReal") ;
+%     double expResult = 0.0 ;
+%     double result = cZeroOne.getRealPart( ) ;
+%     assertEquals(expResult,result,0.1) ;
+%   }
+%   @Test public void getImaginaryPart() throws Exception {
+%     System.out.println("getImg") ;
+%     double expResult = 1.0;
+%     double result = cZeroOne.getImaginaryPart();
+%     assertEquals(expResult,result,0.1) ;
+%   }
+%   @Test public void getImaginaryPart2() throws Exception {
+%     System.out.println( "getImg" ) ;
+%     ComplexNumber cNumber = mock(ComplexNumber.class);
+%     when(cNumber.getImaginaryPart()).thenReturn(1.0);
+%     double expResult = 1.0;
+%     double result = cZeroOne.getImaginaryPart();
+%     assertEquals(expResult,result,0.1) ;
+%   }
+% \end{lstlisting
+  
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \section{First Example}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% \begin{frame}[fragile]{\texttt{ComplexNumber} class -- Class Under Test (CUT)}
+
+% We will use \texttt{ComplexNumber} class and later this class will be used to calculate quadratic equations.
+
+% The structure of \texttt{ComplexNumber} is as follows:
+
+% \begin{center}
+%  \includegraphics[width=75pt]{./figs/ComplexNumber}
+% \end{center}
+
+% And the operations are as follows:
+
+% \begin{itemize}
+%  \item Addition: $(a,b)+(c,d)=(a+c)+(b+d)i$
+%  \item Multiplication: $(a,b)\cdot(c,d)=(ac-bd) + (ad+cb)i$
+%  \item Equality: $(a,b)=(c,d) \Leftrightarrow a=c \wedge b=d$
+% \end{itemize}
+
+% \end{frame}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% \begin{frame}[fragile]{\texttt{ComplexNumber} class -- CUT I}
+
+
+% \begin{lstlisting}[language=Java,basicstyle=\scriptsize]
+% public class ComplexNumber {
+%     private double fReal;
+%     private double fImaginary;
+
+%   public ComplexNumber(double re, double im) {
+%     fReal = re;
+%     fImaginary = im;
+%   }
+
+%   public double getReal() {
+%     return fReal;
+%   }
+
+%   public double getImaginary() {
+%     return fImaginary;
+%   }
+% }
+
+% public ComplexNumber add(ComplexNumber c) {
+%   return new ComplexNumber(getReal() + c.getReal(), getImaginary() + c.getImaginary());
+% }
+% \end{lstlisting}
+
+% \end{frame}
+
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]{\texttt{ComplexNumber} class -- CUT II}
+
+% \begin{lstlisting}[language=Java,basicstyle=\scriptsize]
+% public ComplexNumber multiply(ComplexNumber c) {
+%   double re = getReal() * c.getReal() - getImaginary() * c.getImaginary();
+%   double im = getImaginary() * c.getReal() + getReal() * c.getImaginary();
+%   return new ComplexNumber(re, im);
+% }
+
+% @Override
+% public boolean equals(Object anObject) {
+%   if (anObject instanceof ComplexNumber) {
+%     ComplexNumber c = (ComplexNumber) anObject;
+%     return ((c.getReal() == getReal()) && (c.getImaginary() == getImaginary()));
+%   } else
+%     return false;
+%   }
+% }
+% \end{lstlisting}
+
+% \end{frame}
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \subsection{Testing Suites}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% % \begin{frame}[fragile]{Suites}
+
+% %   Run different sets of unit tests
+
+% %   Using \texttt{@Suite} annotation
+
+% %   % \begin{lstlisting}[language=Java,basicstyle=\tiny]  
+% %   % import org.junit.platform.suite.api.IncludeTags;
+% %   % import org.junit.platform.suite.api.SelectPackages;
+% %   % import org.junit.platform.suite.api.Suite  % \begin{lstlisting}[language=Java,basicstyle=\tiny]  
+% %   % import org.junit.platform.suite.api.IncludeTags;
+% %   % import org.junit.platform.suite.api.SelectPackages;
+% %   % import org.junit.platform.suite.api.Suite;
+  
+% %   % @SelectPackages({"uah.packageA"
+% %   %                 ,"uah.packageB"})
+  
+% %   % @IncludeTags("production")
+% %   % @Suite
+% %   % public class JUnit5TestSuiteExample {
+% %   % }
+% %   % \end
+% %   % \end{lstlisting};
+  
+% %   % @SelectPackages({"uah.packageA"
+% %   %                 ,"uah.packageB"})
+  
+% %   % @IncludeTags("production")
+% %   % @Suite
+% %   % public class JUnit5TestSuiteExample {
+% %   % }
+% %   % \end
+% %   % \end{lstlisting}
+
+% % \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \subsection{Testing Exceptions}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]{Exceptions}
+
+% The coefficient $a$ must not be zero. Therefore,
+
+% \texttt{instance = new QuadraticEquation(0,1,1);}
+
+% will throw an exception when:
+
+% \texttt{boolean result = instance.checkCoefficientsAreOk();}
+
+% This is tested with:
+%     @Test(expected=CoefficientsException.class)
+
+% \begin{lstlisting}[language=JAVA,basicstyle=\scriptsize]
+%     @Test(expected=CoefficientsException.class)
+%     public void testCheckCoefficientsAreOkException() throws CoefficientsException {
+%         System.out.println("checkCoefficientsAreOk with Exception raised");
+%         QuadraticEquation instance;
+%         instance = new QuadraticEquation(0,1,1);
+%         boolean result = instance.checkCoefficientsAreOk();
+%     }
+% \end{lstlisting}
+
+% \end{frame}
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \subsection{Testing Private Methods}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Testing Private Methods}
+
+% In general private methods are not tested directly (they are tested indirectly through other public methods). However, if there is a need to do there are several alternatives:
+
+% \begin{itemize}
+%  \item Change the visibility (make them public) temporarily. However, this changes the original program and does not follow the criteria of keeping tests and source code independently.
+%  \item Use Java reflection mechanisms
+% \end{itemize}
+
+
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \section{Advanced Issues}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \subsection{Testing private methods}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% \begin{frame}[fragile]{Testing Private Methods - Example}
+
+% \begin{lstlisting}[language=Java,basicstyle=\tiny]
+%     public void testComputeDiscriminant() throws Exception {
+%         System.out.println("checkCoefficientsAreOk");
+%          Class c = null;
+%          Object ins = new QuadraticEquation(1,1,1);
+%          Method m = null;
+%          c = Class.forName("example.QuadraticEquation");
+%          m = c.getDeclaredMethod("computeDiscriminant");
+%          // Remove private access restriction:
+%          m.setAccessible(true);
+%          Object res = m.invoke(ins);
+%          Double result = (Double)res;
+%          System.out.println(result);
+%          double expectedResult = -3.0;
+%          assertEquals(result.doubleValue(), expectedResult);
+%     }
+% \end{lstlisting}
+
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \subsection{Parametrized tests}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Parametrized tests}
+
+% The parametrized test is an automated test in which the parameters change automatically.
+
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]{Parametrized tests - Example}
+
+% \begin{lstlisting}[language=Java,basicstyle=\tiny]
+% import static org.junit.Assert.assertEquals;
+% import java.util.Arrays;
+% import java.util.Collection;
+% import org.junit.Test;
+% import org.junit.runner.RunWith;
+% import org.junit.runners.Parameterized;
+% import org.junit.runners.Parameterized.Parameters;
+
+% //@RunWith(MockitoJUnitRunner.class)
+% @RunWith(Parameterized.class)
+% public class QuadraticEquationparTest {
+%   private QuadraticEquation qe;
+
+%   private Double coeficient;
+
+%   //Constructor
+%   public QuadraticEquationparTest(Double coeficient) {
+%     this.coeficient = coeficient;
+%   }
+
+%   @Parameters //Definition of the parameters.
+%   public static Collection<Double[]> data() {
+%     Double[][] data = new Double[][] { {1.0}, {2.0}, {3.0}, {4.0} , {14.0} };
+%   return Arrays.asList(data);
+% }
+% \end{lstlisting}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% \begin{frame}[fragile]
+% \begin{lstlisting}[language=Java,basicstyle=\tiny]
+% @Test
+% public void checkCoefficientsAreOk() throws Exception {
+%   System.out.println("Coeficients");
+%   boolean expResult = true;
+%   qe = new QuadraticEquation(coeficient,6.0,8.0);
+%   boolean result = qe.checkCoefficientsAreOk();
+%   assertEquals(expResult, result);
+% }
+% \end{lstlisting}
+% \end{frame}
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% \section{Testing with Mock Objects}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \subsection{Mock Objects}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{What are Mock objects?}
+
+
+% Sometimes tests need to be carried out without having all objects implemented or the instantiation of all needed classes is very expensive (e.g., when dealing with databases)
+
+% Advantages of using mock objects include:
+
+% \begin{itemize}
+%  \item Easy to instantiate
+%  \item If a CUT fails, the failure is located in the CUT, never in the mock!
+%  \item They allow us to reduce the testing time with simpler and faster classes
+% \end{itemize}
+
+% In Java, well-known frameworks include: Mockito, JMock and Easymock.
+
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}{Process}
+
+% Process to create mock objects
+
+% \begin{enumerate}
+%  \item Create the necessary Mock objects
+%  \item Define their behaviour, establishing expectations
+%  \item Create CUT instances using the mock objects
+%  \item Run the test methods 
+%  \item Check with the mock objects if expectations were fulfilled. 
+% \end{enumerate}
+
+% \end{frame}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \subsection{Testing with Mockito}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}
+
+% ''Mockito is a mocking framework that tastes really good. It lets you write beautiful tests with clean \& simple API. Mockito doesn't give you hangover because the tests are very readable and they produce clean verification errors.''
+
+% Web: \texttt{https://site.mockito.org/}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]
+% With Mockito we can use mock objects in unit tests to test classes simulating their behaviour with mock objects.
+
+% Some internet examples:
+
+% \begin{lstlisting}[language=Java,basicstyle=\tiny]
+% public class MyServiceTest extends UnitilsJUnit4 {
+%     private Mock<MyService> myServiceMock;
+% }
+
+% @Before
+% public void initialize() {
+%     myServiceMock = new MockObject<MyService>(MyService.class, this);
+% }
+% \end{lstlisting}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}
+% With mock objects and Mockito we can do:
+
+%   \begin{enumerate}
+%   \item Test the behaviour
+%   \item Force the behaviour
+%   \item Use matchers in arguments passing
+%   \item Call order verification
+%   \item Etc.
+%   \end{enumerate}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% \begin{frame}{Installing Mockito}
+
+% Download Mockito:
+
+% \texttt{\url{https://site.mockito.org/}}
+
+% and include the \texttt{.jar} file into your project.
+
+% ~
+
+% Or use Maven or Gradle to handle the dependencies.
+
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% % \begin{frame}
+
+% % The process is similar as in JUnit:
+% % \begin{enumerate}
+% %  \item Open the project properties
+% %  \item Click on Java Build Path
+% %  \item Select the Libraries tab
+% %  \item Click the Add External \texttt{.jar} button
+% %  \item Choose your mockito \texttt{.jar} library.
+% % \end{enumerate}
+
+% % \end{frame}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]
+
+% \begin{lstlisting}[language=Java,basicstyle=\tiny]
+% public class QuadraticEquation {
+
+%     /* quadratic coefficient */
+%     private double a =  0;
+%     /* linear coefficient */
+%     private double b = 0;
+%     /* free term */
+%     private double c = 0;
+
+%     /**
+%      * Creates the quadratic equation from its parameters.
+%      */
+%     public QuadraticEquation(double a, double b, double c){
+%         this.a = a; this.b = b; this.c = c;
+%     }
+
+%     /**
+%      * Helper method to check the coefficients are ok.
+%      */
+%     protected boolean checkCoefficientsAreOk() throws Exception{
+%         if (a == 0) throw new Exception();
+%         return true;
+%     }
+
+%     /**
+%      *  Computes the discriminant of the equation.
+%      */
+%     private double computeDiscriminant(){
+%         return b*b - 4*a*c;
+%     }
+
+% \end{lstlisting}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]
+
+
+% \begin{lstlisting}[language=Java,basicstyle=\tiny]
+%   /**
+%      * Get solutions of the equation.
+%      * The method returns:
+%      * (a) Either two real or two imaginary solutions
+%      * in positions 0 and 1 of the array
+%      * (b) A single solution in position 0 of the array with the other
+%      * set to null.
+%      */
+%     public ComplexNumber[] getSolutions(){
+%         // This check is defensive programming, as the contract of
+%         // the class makes clear a should not be zero.
+%     	try
+%     	{
+%     	if (!checkCoefficientsAreOk())
+%             return null;
+%     	}catch(Exception e)
+%     	{
+%     		System.out.println(e.toString());
+%     	}
+%         Double disc = computeDiscriminant();
+%         ComplexNumber[] result = new ComplexNumber[2];
+%         if (disc == 0){
+%             Double sol = - (b/(2*a));
+%             result[0] = new ComplexNumber(sol, 0.0);
+%         }else if (disc > 0){
+%             Double sol1 = (-b + Math.sqrt(disc))/(2*a);
+%             result[0] = new ComplexNumber(sol1, 0.0);
+
+% \end{lstlisting}
+% \end{frame}
+
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]
+
+% \begin{lstlisting}[language=JAVA,basicstyle=\tiny]
+
+%             result[0] = new ComplexNumber(sol1, 0.0);
+%             Double sol2 = (-b - Math.sqrt(disc))/(2*a);
+%             result[1] = new ComplexNumber(sol2, 0.0);
+%         }
+%         else{
+%             Double realPart = -b/(2*a);
+%             Double imagPart = disc/(2*a);
+%             result[0] = new ComplexNumber(realPart, imagPart);
+%             result[1] = new ComplexNumber(realPart, -imagPart);
+%         }
+%         return result;
+%     }
+
+%    }
+% \end{lstlisting}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% % \begin{frame}
+
+% % First step is to create JUnit test classes as usual.
+
+% % Then create the test methods.
+
+% % \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]
+% \begin{lstlisting}[language=JAVA,basicstyle=\tiny]
+% import static org.junit.Assert.*;
+% import java.util.Arrays;
+% import org.junit.After;
+% import org.junit.Before;
+% import org.junit.Test;
+
+% //@RunWith(MockitoJUnitRunner.class)
+% public class QuadraticEquationTest
+% {
+% 	 private QuadraticEquation qe;
+% 	 private QuadraticEquation qe1;
+	
+% 	@Before
+% 	public void setUp() throws Exception
+% 	{
+% 		qe = new QuadraticEquation(1.0, 5.0, 0.0);
+% 		qe1 = new QuadraticEquation(0.0, 5.0, 0.0);
+% 	}
+
+% 	@After
+% 	public void tearDown() throws Exception
+% 	{
+% 		qe = new QuadraticEquation(0.0, 0.0, 0.0);
+% 	}
+% \end{lstlisting}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]
+% \begin{lstlisting}[language=JAVA,basicstyle=\tiny]
+% 	@Test
+% 	public void checkCoefficientsAreOk() throws Exception {
+% 		System.out.println("Coeficients");
+% 		boolean expResult = true;
+% 		boolean result = qe.checkCoefficientsAreOk();
+% 		assertEquals(expResult, result);
+% 	}
+
+%   //Testing exceptions the first coeficient must not be 0
+% 	@Test(expected = Exception.class) 
+% 	public void checkCoefficientsAreOk1() throws Exception {
+% 		System.out.println("Coeficients");
+% 		boolean expResult = true;
+% 		boolean result = qe1.checkCoefficientsAreOk();
+% 		assertEquals(expResult, result);
+% 	}
+	
+% 	@Test
+% 	public void getSolutions() throws Exception {
+% 		System.out.println("Solutions");
+% 		ComplexNumber[] expected = { new ComplexNumber(0.0, 0.0),
+% 				new ComplexNumber(-5.0, 0.0) };
+% 		ComplexNumber[] result = qe.getSolutions();
+% 		System.out.println(Arrays.equals(result, expected));
+% 		assertArrayEquals(expected, result);
+% 	}}
+% \end{lstlisting}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}
+% Now we going to do the same with the \texttt{ComplexNumbers}.
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]{Example}
+% \begin{lstlisting}[language=JAVA,basicstyle=\tiny]
+% class ComplexNumber {
+%     private Double realPart;
+%     private Double imagPart;
+
+%     /**
+%      * Construct a new ComplexNumber that has the value 0 + 0i.
+%      */
+%     public ComplexNumber() {
+%     }
+
+%     /**
+%      * Construct a new ComplexNumber with the value realPart + 0i.
+%      *
+%      * @param realPart initial value for the real part
+%      */
+%     public ComplexNumber(Double realPart) {
+% 	      this.realPart = realPart;
+%     }
+
+%     /**
+%      * Construct a new ComplexNumber
+%      *
+%      * @param realPart initial value for the real part
+%      * @param imagPart initial value for the imaginary part
+%      */
+%     public ComplexNumber(Double realPart, Double imagPart) {
+% 	    this.realPart = realPart;
+% 	    this.imagPart = imagPart;
+%     }
+% \end{lstlisting}
+% \end{frame}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]
+% \begin{lstlisting}[language=JAVA,basicstyle=\tiny]
+%     /**
+%      * Test whether the this ComplexNumber and the ComplexNumber theNum
+%      * are equal.  Two ComplexNumbers are equal if their
+%      * real parts are equal and their imaginary parts are equal.
+%      *
+%      * @param theNum the ComplexNumber to which this ComplexNumber is
+%      *               to be compared for equality.
+%      * @return true if the real and imaginary parts of this
+%      *         ComplexNumber are equal to the real and imaginary
+%      *         parts of theNum, and false otherwise.
+%      */
+%     public boolean equals(ComplexNumber theNum) {
+% 	    return ((realPart == theNum.realPart) &&
+% 		          (imagPart == theNum.imagPart));
+%     }
+% \end{lstlisting}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]
+% \begin{lstlisting}[language=Java,basicstyle=\tiny]
+%   /**
+%      * Return a reference to a new ComplexNumber with value equal
+%      * to the sum of this ComplexNumber and the ComplexNumber theNum.
+%      *
+%      * @param theNum a ComplexNumber to be added to this ComplexNumber.
+%      * @return a reference to a new ComplexNumber equal to the sum of this
+%      *         ComplexNumber and theNum.
+%      */
+%     public ComplexNumber add(ComplexNumber theNum) {
+% 	    return new ComplexNumber(realPart + theNum.realPart,
+% 				                       imagPart + theNum.imagPart);
+%     }
+
+%     /**
+%      * Return a reference to a new ComplexNumber with value equal
+%      * to the difference between this ComplexNumber and the
+%      * ComplexNumber theNum.
+%      *
+%      * @param theNum a ComplexNumber to be subtracted from this ComplexNumber.
+%      * @return a reference to a new ComplexNumber equal to the difference
+%      *         between this ComplexNumber and theNum.
+%      */
+%     public ComplexNumber subtract(ComplexNumber theNum) {
+% 	    return new ComplexNumber(realPart - theNum.realPart,
+% 				                       imagPart - theNum.imagPart);
+%     }
+
+% \end{lstlisting}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% \begin{frame}[fragile]
+% \begin{lstlisting}[language=JAVA,basicstyle=\tiny]
+%     /**
+%      * Get the real part of this ComplexNumber.
+%      *
+%      * @return the real part of this ComplexNumber.
+%      */
+%     public Double getRealPart() {
+% 	     return realPart;
+%     }
+
+%     /**
+%      * Get the imaginary part of this ComplexNumber.
+%      *
+%      * @return the imaginary part of this ComplexNumber.
+%      */
+%     public Double getImaginaryPart() {
+% 	    return imagPart;
+%     }
+
+%     /**
+%      * Convert this ComplexNumber into a String representation.
+%      *
+%      * @return a String representation of this ComplexNumber.
+%      */
+%     @Override
+%     public String toString() {
+% 	    // If the imagPart is >= 0 print out a + b i
+% 	    if (imagPart >= 0) {
+% 	      return realPart + " + " + imagPart + " i";
+%     	}
+% 	    // If the imagPart is < 0 print out a - b i
+% 	    else {
+% 	      return realPart + " - " + (-imagPart) + " i";
+% 	    }
+%     }
+% }
+% \end{lstlisting}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]
+% \begin{lstlisting}[language=JAVA,basicstyle=\tiny]
+% import static org.junit.Assert.*;
+% import static org.mockito.Mockito.*;
+% import org.junit.Before;
+% import org.junit.Test;
+
+% public class ComplexNumberTest{
+% 	private ComplexNumber cZero ;
+% 	private ComplexNumber cOneZero ;
+% 	private ComplexNumber cZeroOne ;
+% 	private ComplexNumber cOneOne ;
+	
+% 	@Before
+% 	public void setUp() throws Exception {
+% 		cZero = new ComplexNumber(0.0,0.0) ;
+% 		cOneZero = new ComplexNumber(1.0,0.0) ;
+% 		cZeroOne = new ComplexNumber(0.0,1.0) ;
+% 		cOneOne = new ComplexNumber (1.0,1.0) ;
+% 	}
+% \end{lstlisting}
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]
+
+% \begin{lstlisting}[language=Java,basicstyle=\tiny]
+% 	@Test
+% 	public void equals() throws Exception {
+% 		System.out.println("equals");
+% 		boolean expResult = true ;
+% 		boolean result = cOneZero.equals(cOneZero);
+% 		assertEquals(expResult,result);
+% 	}
+
+% 	@Test
+% 	public void add() throws Exception {
+% 		System.out.println("add");
+% 		ComplexNumber result = cZeroOne.add(cOneZero);
+% 		assertEquals(cOneOne.toString(),result.toString());
+% 	}
+
+% 	@Test
+% 	public void subtract() throws Exception	{
+% 		System.out.println("sub");
+% 		ComplexNumber result = cOneZero.subtract(cOneZero);
+% 		assertEquals(cZero.toString(),result.toString());
+% 	}
+% \end{lstlisting}
+
+% \end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]
+
+% \begin{lstlisting}[language=JAVA,basicstyle=\scriptsize]
+%   @Test public void getRealPart() throws Exception {
+%     System.out.println("getReal") ;
+%     double expResult = 0.0 ;
+%     double result = cZeroOne.getRealPart( ) ;
+%     assertEquals(expResult,result,0.1) ;
+%   }
+%   @Test public void getImaginaryPart() throws Exception {
+%     System.out.println("getImg") ;
+%     double expResult = 1.0;
+%     double result = cZeroOne.getImaginaryPart();
+%     assertEquals(expResult,result,0.1) ;
+%   }
+%   @Test public void getImaginaryPart2() throws Exception {
+%     System.out.println( "getImg" ) ;
+%     ComplexNumber cNumber = mock(ComplexNumber.class);
+%     when(cNumber.getImaginaryPart()).thenReturn(1.0);
+%     double expResult = 1.0;
+%     double result = cZeroOne.getImaginaryPart();
+%     assertEquals(expResult,result,0.1) ;
+%   }
+% \end{lstlisting}
+
+% \end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{frame}[fragile]
+
+% In this example we are using a Mock to emulate the behaviour of a \texttt{ComplexNumber} type object.
+
+% The \emph{mock} will return  \texttt{1.0} when the \texttt{getImaginaryPart()} method is called.
+
+% \begin{lstlisting}[language=JAVA,basicstyle=\scriptsize]
+% @Test
+% public void getImaginaryPart2() throws Exception {
+%   System.out.println("getImg");
+%   ComplexNumber cNumber = mock(ComplexNumber.class); \\Creating the Mock.
+%   when(cNumber.getImaginaryPart()).thenReturn(1.0); \\Coding the Mock behaviour.
+%   double expResult = 1.0;
+%   double result = cZeroOne.getImaginaryPart();
+%   assertEquals(expResult,result,0.1) ;
+% }
+% \end{lstlisting}
+
+% \end{frame}
+

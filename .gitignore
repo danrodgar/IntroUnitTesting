@@ -32,6 +32,9 @@
 *.vrb
 *.class
 *.war
+*.fls
+*.fdb_latexmk
+
 
 .project
 .classpath
@@ -40,3 +43,6 @@
 *.iml
 target/
 .factorypath
+
+.vscode/
+
