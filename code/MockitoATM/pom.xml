@@ -82,6 +82,7 @@
                             <goal>report</goal>
                         </goals>
                     </execution>
+                    <!--
                     <execution>
                         <id>generate-badge</id>
                         <phase>post-site</phase>
@@ -91,6 +92,7 @@
                             <goal>badge</goal>
                         </goals>
                     </execution>
+                    -->
                 </executions>
             </plugin>
         </plugins>

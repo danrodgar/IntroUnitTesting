@@ -134,19 +134,18 @@
 
 \begin{frame}{Testing}
 
-\begin{itemize}
- \item \alert{Error}: human mistake
- \item \alert{Fault}: result of mistake, evidenced in some development or maintenance product
- \item \alert{Failure}:  departure from the system's required behaviour
-\end{itemize}
-
-\begin{itemize}
- \item \alert{Fault identification (testing)}: Testing is the process of showing the presence of a software error. What fault caused the failure?
- \item \alert{Fault correction or removal (debugging)}: Debugging is the process of discovering the location of an error and its subsequent modification, i.e., change the system to take out the fault
-\end{itemize}
-
-
-\end{frame}
+  \begin{itemize}
+   \item \alert{Error}: A human mistake.
+   \item \alert{Fault}: The result of a mistake, evidenced in some development or maintenance product.
+   \item \alert{Failure}: A departure from the system's required behaviour.
+  \end{itemize}
+  
+  \begin{itemize}
+   \item \alert{Fault identification (testing)}: Testing is the process of showing the presence of a software error. What fault caused the failure?
+   \item \alert{Fault correction or removal (debugging)}: Debugging is the process of discovering the location of an error and its subsequent modification, i.e., changing the system to remove the fault.
+  \end{itemize}
+  
+  \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -225,34 +224,37 @@ ARE WE BUILDING IT RIGHT?
 
 \begin{frame}{What are Assertions?}
 
-An \alert{assertion} specifies a constraint over some state of computation. It evaluating to false implies there exists an incorrect state in the program.
-
-Assertions: 
-
-\begin{itemize}
-  \item can test whether the execution state is consistent at the point of examination.
-  \item predicates involving the state variables of a program in execution.
-  \item are embedded in the program text
-  \item can test whether the execution state is consistent at the point of examination.
-\end{itemize}
-
-Assertions are part of most programming languages.
-
-\end{frame}
+  An \alert{assertion} specifies a constraint over some state of computation. If it evaluates to false, it implies there exists an incorrect state in the program.
+  
+  Assertions: 
+  
+  \begin{itemize}
+    \item can test whether the execution state is consistent at the point of examination.
+    \item are predicates involving the state variables of a program in execution.
+    \item are embedded in the program text.
+  \end{itemize}
+  
+  Assertions are part of most programming languages.
+  
+  \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{Assertions: History}
 
+
+Hoare and Floyd started in the 60s (Hoare logic) the formal verification of programs. They introduced the concept of \emph{preconditions}, \emph{postconditions} and \emph{invariants}.
+
+A triple describes how the execution of a piece of code changes the state of the computation:
+
+  $[\{P\}C\{Q\}]$
+
+\noindent where $P$ and $Q$ are assertions and $C$ is code.
+
 \begin{itemize}
-  \item Hoare and Floyd started in the 60s (Hoare logic) the formal verificatin of programs 
-  [[{P}C{Q}]]
-	where $P$ and $Q$ are assertions and $C$ is code.
-	\begin{itemize}
 	\item $P$ precondition 
 	\item $Q$ postcondition
-	\end{itemize}
 \end{itemize}
 
 In other words, a program behaviour can be verified using preconditions, postconditions and invariants.
@@ -264,35 +266,35 @@ In other words, a program behaviour can be verified using preconditions, postcon
 
 \begin{frame}[fragile]{Assertions in Java}
 
-Assertions in Java are written as:
+  Assertions in Java are written as:
 
-\begin{lstlisting}[language=JAVA,basicstyle=\small]
-assert expersion;
-\end{lstlisting}
-
-\texttt{assert} is a Java keywork and \texttt{expression} is any Boolean expression. When evaluated to \texttt{false} an exception will be raised, \texttt{AssertionError}. 
-
-It can also provide information for developers:
-
-\begin{lstlisting}[language=JAVA,basicstyle=\small]
-assert expersion 1; expression 2;
-\end{lstlisting}
+  \begin{lstlisting}[language=JAVA,basicstyle=\small]
+  assert expression;
+  \end{lstlisting}
+  
+  \texttt{assert} is a Java keyword and \texttt{expression} is any Boolean expression. When evaluated to \texttt{false}, an exception, \texttt{AssertionError}, will be raised. 
+  
+  They can also provide information for developers:
+  
+  \begin{lstlisting}[language=JAVA,basicstyle=\small]
+  assert expression1 : expression2;
+  \end{lstlisting}
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}[fragile]{\texttt{Assert} example}
+\begin{frame}[fragile]{\texttt{Assert} Example}
 
 \begin{lstlisting}[language=JAVA,basicstyle=\scriptsize]
   public double avgMarks(double[] marks){
  	// Pre-condition
 	assert marks.length > 0 : "Array is empty!";
    	double avg = 0;
-   	for (int i =0 ; i < marks.length; i++){
+   	for (int i = 0 ; i < marks.length; i++){
 	     //Invariant	
-   	     assert marks[i]>=0 && marks[i]<=10 : "Mark not valid!";
-   	     avg +=marks[i];
+   	     assert marks[i] >= 0 && marks[i] <= 10 : "Mark is not valid!";
+   	     avg += marks[i];
    	}
    	return avg/marks.length;
    }
@@ -311,16 +313,16 @@ public class AssertionExample {
   public double avgMarks(double[] marks){
    	assert marks.length > 0 : "Array is empty!";
    	double avg = 0;
-   	for (int i =0 ; i < marks.length; i++){
-   	     assert marks[i]>=0 && marks[i]<=10 : "Mark not valid!";
-   	     avg +=marks[i];
+   	for (int i = 0; i < marks.length; i++) {
+   	     assert marks[i] >= 0 && marks[i] <= 10 : "Mark is not valid!";
+   	     avg += marks[i];
    	}
    	return avg/marks.length;
    }
 
   public static void main(String args[]){
    	AssertionExample e = new AssertionExample();
-   	double [] marks = {10, 5, 11, 3, 2, 7.5};
+   	double[] marks = {10, 5, 11, 3, 2, 7.5};
    	System.out.println(e.avgMarks(marks));
    	marks = new double[0];
    	System.out.println(e.avgMarks(marks));
@@ -337,18 +339,19 @@ public class AssertionExample {
 
 \begin{frame}[fragile]{\texttt{Assert} example}
 
-When assertions are run enabled, i.e., with the VM options \texttt{-enableassertions} or \texttt{-ea} :
+When assertions are evaluated when enabled, i.e., with the VM options \texttt{-enableassertions} or \texttt{-ea}:
+
 \begin{lstlisting}[language=JAVA,basicstyle=\scriptsize]
 $java -ea AssertionExample
 \end{lstlisting}
 
 \begin{center}
- \includegraphics[width=340pt]{./figs/assertionsExeption}
+ \includegraphics[width=\columnwidth]{./figs/assertionsExeption}
 \end{center}
 
-assertionsExeption 
+%assertionsExeption 
 
-Otherwise, it will run normally as assertions are design to be run during the testing phase or debugging.
+Otherwise, it will run normally as assertions are designed to be run during the testing phase or debugging.
 
 \end{frame}
 
@@ -356,19 +359,20 @@ Otherwise, it will run normally as assertions are design to be run during the te
 
 \begin{frame}[fragile]{Assertions vs Exceptions}
 
-Assertions are designed to check the program correctness, i.e, as \emph{preconditions}, \emph{postconditions} or \emph{invariants}.
+Assertions are designed to check the program's correctness, i.e, as \emph{preconditions}, \emph{postconditions} or \emph{invariants}.
 
-Assertions can be used to verify the state of a programa but should NOT be used to... 
+Assertions can be used to verify the state of a program but should NOT be used to:
+
 \begin{itemize}
 \item Validate arguments of public methods
-\item Substitue the \textbf{exception handling} mechanims of a programming language
+\item Substitute the \textbf{exception handling} mechanims of a programming language
 \item Modify values of attributes or objects
-\item Used in production code (assertions abruptly stop the execution of a program)
+\item Be used in production code (assertions abruptly stop the execution of a program)
 \end{itemize}
 
-Exception handling is the process of responding to the occurrence of exceptions (usually in a gracefull manner so that the execution is not interrupted). In Java, this is carried out with \texttt{try() ... catch() ... finally} statements.
+Exception handling is the process of responding to the occurrence of exceptions (usually in a graceful manner so that the execution is not interrupted). In Java, this is carried out with \texttt{try() ... catch() ... finally} statements.
 
-Although most programming languages provide assertions, unit testing is usually carried out with frameworks such as jUnit. 
+Although most programming languages provide assertions, unit testing is usually carried out with frameworks such as jUnit (Java) or pyest (Python). 
 
 \end{frame}
 
@@ -382,22 +386,26 @@ Although most programming languages provide assertions, unit testing is usually 
 
 \begin{frame}{What is JUnit}
 
-  \begin{itemize}
-     \item JUnit is the most popular open source unit testing framework in Java
-     \item JUnit is a regression testing framework
-     \item Created in 1997 by Erich Gamma and Kent Beck
-     \item Simple framework with a small learning curve
-     \item Tests can be automated (facilitates regression testing). It allow us to aggregate tests via test suites.
-     \item \textit{De facto} standard, integrated with Ant and Maven. Typically run with continuous integration testing tools. 
-     %\item \texttt{\url{https://www.junit.org/}}
-  \end{itemize}
+\begin{block}{}
+  \centering \url{https://www.junit.org/}
+\end{block}
+
+\begin{itemize}
+    \item JUnit is the most popular open source unit testing framework in Java.
+    \item JUnit is a regression testing framework.
+    \item Created in 1997 by Erich Gamma and Kent Beck.
+    \item Simple framework with a small learning curve.
+    \item Tests can be automated (facilitates regression testing). It allow us to aggregate tests via test suites.
+    \item \textit{De facto} standard, integrated with Ant, Maven, Gradle, etc. Typically run with continuous integration testing tools. 
+    %\item \texttt{\url{https://www.junit.org/}}
+\end{itemize}
 
 
-  % \begin{block}{}
-  %   \url{https://www.junit.org/}
-  % \end{block}
 
+
+\begin{block}{}
   ''Never in the field of software development have so many owed so much to so few lines of code'' (Martin Fowler)
+\end{block}
 
 \end{frame}
 
@@ -559,27 +567,28 @@ JUnit 4 took advantage of imports and annotations included in JDK 5+.
 
 \begin{frame}{Junit 5 -- Assert methods}
 
-Assert methods are used as a comparison between an expected value and an actual value to determine the success or failure of a test
+Assert methods are used to comparison between an expected value and an actual value to determine the success or failure of a test.
   
       \begin{itemize}
         \item \texttt{assertCONDITION(...)}
-        \item \texttt{assertCONDITION(String message,...)}  the message is displayed when the assert method fails
+        \item \texttt{assertCONDITION(String message,...)} - The message is displayed when the assert method fails
       \end{itemize}
   
 For example:
+
       \begin{itemize}
         \item \texttt{assertEquals(<> expected, <> actual)}
         \item \texttt{assertSame(...)} 
         \item \texttt{assertFalse(boolean condition)}
         \item \texttt{assertTrue(boolean condition)}
-        \item \texttt{assertNull(...)}
-        \item \texttt{assertNotNull(...)}
+        %\item \texttt{assertNull(...)}
+        %\item \texttt{assertNotNull(...)}
         \item Etc.
       \end{itemize}
 
-Further info in the API: \texttt{org.junit.jupiter.api.Assertions}
+Further information in the API: \texttt{org.junit.jupiter.api.Assertions}
 
-\url{https://junit.org/junit5/}
+%\url{https://junit.org/junit5/}
   
 \end{frame}
 
@@ -587,16 +596,15 @@ Further info in the API: \texttt{org.junit.jupiter.api.Assertions}
 
 \begin{frame}{Junit 5 -- New functionality I}
 
-\begin{itemize}
-  \item Custom display names - \texttt{@DisplayName} annotation allows us to provide custom display names for test classes and methods which can have spaces, special characters, and emojis.
-
-  \item Nested test classes - non-static nested classes (i.e. inner classes) can serve as @Nested test classes for logical grouping of test cases. 
-
-  \item Tagging and filtering - It is possible yo tag test classes and test methods with your  identifiers using the \texttt{@Tag} annotation. 
-
-  \item Meta-annotations and composed annotations - This allows us to create a custom composed annotation that will inherit the semantics of its meta-annotations.
-
-\end{itemize}
+  \begin{itemize}
+    \item Custom display names - The \texttt{@DisplayName} annotation allows us to provide custom display names for test classes and methods, which can include spaces, special characters, and emojis.
+  
+    \item Nested test classes - Non-static nested classes (i.e., inner classes) can serve as \texttt{@Nested} test classes for logical grouping of test cases. 
+  
+    \item Tagging and filtering - It is possible to tag test classes and test methods with your identifiers using the \texttt{@Tag} annotation. 
+  
+    \item Meta-annotations and composed annotations - This allows us to create a custom composed annotation that will inherit the semantics of its meta-annotations.
+  \end{itemize}
 
 \end{frame}
 
@@ -604,15 +612,14 @@ Further info in the API: \texttt{org.junit.jupiter.api.Assertions}
 
 \begin{frame}{Junit 5 -- New functionality II}
 
-\begin{itemize}
-  \item Dynamic tests - JUnit Jupiter introduces a of dynamic tests which are generated at runtime by a factory method annotated with \texttt{@TestFactory} annotation
-
-  \item Repeated tests - Annotating the test method with \texttt{@RepeatedTest} annotation and specifying the number of repetitions.
-
-  \item Parameterized tests - Run a test multiple times with different arguments by annotating the test method with \texttt{@ParameterizedTest} annotation 
-  % and declaring at least one source to provide the arguments. 
-
-\end{itemize}
+  \begin{itemize}
+    \item Dynamic tests - JUnit Jupiter introduces dynamic tests which are generated at runtime by a factory method annotated with the \texttt{@TestFactory} annotation.
+  
+    \item Repeated tests - Tests can be repeated a specified number of times by annotating the test method with the \texttt{@RepeatedTest} annotation.
+  
+    \item Parameterized tests - A test can be run multiple times with different arguments by annotating the test method with the \texttt{@ParameterizedTest} annotation.
+    % and declaring at least one source to provide the arguments. 
+  \end{itemize}
 
 \end{frame}
 
@@ -623,25 +630,25 @@ Further info in the API: \texttt{org.junit.jupiter.api.Assertions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\begin{frame}[fragile]{\texttt{ComplexNumber} class -- Class Under Test (CUT)}
+\begin{frame}[fragile]{\texttt{ComplexNumber} Class -- Class Under Test (CUT)}
 
-We will use \texttt{ComplexNumber} class and later this class will be used to calculate quadratic equations.
-
-The structure of \texttt{ComplexNumber} is as follows:
-
-\begin{center}
- \includegraphics[width=75pt]{./figs/ComplexNumber}
-\end{center}
-
-And the operations are as follows:
-
-\begin{itemize}
- \item Addition: $(a,b)+(c,d)=(a+c)+(b+d)i$
- \item Multiplication: $(a,b)\cdot(c,d)=(ac-bd) + (ad+cb)i$
- \item Equality: $(a,b)=(c,d) \Leftrightarrow a=c \wedge b=d$
-\end{itemize}
-
-\end{frame}
+  We will use the \texttt{ComplexNumber} class as example, which will later be used to calculate quadratic equations.
+  
+  The structure of the \texttt{ComplexNumber} class is as follows:
+  
+  \begin{center}
+   \includegraphics[width=75pt]{./figs/ComplexNumber}
+  \end{center}
+  
+  The operations are as follows:
+  
+  \begin{itemize}
+   \item Addition: $(a,b)+(c,d)=(a+c)+(b+d)i$
+   \item Multiplication: $(a,b)\cdot(c,d)=(ac-bd) + (ad+cb)i$
+   \item Equality: $(a,b)=(c,d) \Leftrightarrow a=c \wedge b=d$
+  \end{itemize}
+  
+  \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -670,7 +677,8 @@ public class ComplexNumber {
 }
 
 public ComplexNumber add(ComplexNumber c) {
-  return new ComplexNumber(getReal() + c.getReal(), getImaginary() + c.getImaginary());
+  return new ComplexNumber(getReal() + c.getReal(), 
+                           getImaginary() + c.getImaginary());
 }
 \end{lstlisting}
 
@@ -691,7 +699,8 @@ public ComplexNumber multiply(ComplexNumber c) {
 public boolean equals(Object anObject) {
   if (anObject instanceof ComplexNumber) {
     ComplexNumber c = (ComplexNumber) anObject;
-    return ((c.getReal() == getReal()) && (c.getImaginary() == getImaginary()));
+    return ((c.getReal() == getReal()) && 
+            (c.getImaginary() == getImaginary()));
   } else
     return false;
   }
@@ -838,7 +847,7 @@ public class ComplexNumberTest {
 
 \begin{frame}[fragile]
 
-We can write some test that will start with the annontation \texttt{@Before} for the \texttt{setUp()} method as follows.
+We can write some tests that will start with the annotation \texttt{@Before} for the \texttt{setUp()} method as follows.
 
 \begin{lstlisting}[language=Java,basicstyle=\tiny]
 @Before
@@ -847,33 +856,36 @@ public void setUp() throws Exception {
   ComplexNumber cZeroOne = new ComplexNumber(0, 1);
   ComplexNumber cOneOne = new ComplexNumber(1, 1);
 }
-\end{lstlisting}	
-This method is executed before each test case is run. Typically used to create class instances.
+\end{lstlisting}
+
+This method is executed before each test case is run. It is typically used to create class instances.
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]
 
-We can destroy all classes previously created with the annotation  \texttt{@After} before a method usually named \texttt{tierDown()}.
-
-\begin{lstlisting}[language=Java,basicstyle=\tiny]
-@After
-public void tierDown() throws Exception {
-  cOneZero = null;
-  cZeroOne = null;
-  cOneOne = null;
-}
-\end{lstlisting}
-
-This method destroys the classes before each test is executed.
-
-\end{frame}
+  We can destroy all previously created classes with the annotation \texttt{@After} before a method, usually named \texttt{tearDown()}.
+  
+  \begin{lstlisting}[language=Java,basicstyle=\tiny]
+  @After
+  public void tearDown() throws Exception {
+    cOneZero = null;
+    cZeroOne = null;
+    cOneOne = null;
+  }
+  \end{lstlisting}
+  
+  This method destroys the classes before each test is executed.
+  
+  \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}[fragile]
 Now we can write unit tests:
+~
 
 \begin{lstlisting}[language=Java,basicstyle=\tiny]
   @Test  
@@ -972,28 +984,27 @@ public class JUnit5TestSuiteExample {
 
 \begin{frame}[fragile]{Exceptions}
 
-The coefficient $a$ must not be zero. Therefore,
-
-\texttt{instance = new QuadraticEquation(0,1,1);}
-
-will throw an exception when:
-
-\texttt{boolean result = instance.checkCoefficientsAreOk();}
-
-This is tested with:
-    @Test(expected=CoefficientsException.class)
-
-\begin{lstlisting}[language=JAVA,basicstyle=\scriptsize]
-    @Test(expected=CoefficientsException.class)
-    public void testCheckCoefficientsAreOkException() throws CoefficientsException {
-        System.out.println("checkCoefficientsAreOk with Exception raised");
-        QuadraticEquation instance;
-        instance = new QuadraticEquation(0,1,1);
-        boolean result = instance.checkCoefficientsAreOk();
-    }
-\end{lstlisting}
-
-\end{frame}
+  The coefficient $a$ must not be zero. Therefore, the following code:
+  
+  \texttt{instance = new QuadraticEquation(0,1,1);}
+  
+  will throw an exception when executing:
+  
+  \texttt{boolean result = instance.checkCoefficientsAreOk();}
+  
+  This is tested with the annotation \texttt{@Test(expected=CoefficientsException.class)}.
+  
+  \begin{lstlisting}[language=JAVA,basicstyle=\scriptsize]
+      @Test(expected=CoefficientsException.class)
+      public void testCheckCoefficientsAreOkException() throws CoefficientsException {
+          System.out.println("checkCoefficientsAreOk with Exception raised");
+          QuadraticEquation instance;
+          instance = new QuadraticEquation(0,1,1);
+          boolean result = instance.checkCoefficientsAreOk();
+      }
+  \end{lstlisting}
+  
+  \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
